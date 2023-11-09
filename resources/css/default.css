@@ -1,0 +1,29 @@
+/*Login and Signup pages*/
+body {
+    background-color: #38B6FF;
+}
+
+#login, #signup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.2fr 0.8fr;
+    margin: 20px;
+}
+
+#login-header, #signup-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column: span 2;
+}
+
+.header-title {
+    font-size: 45px;
+    color: #FFF;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
