@@ -1,0 +1,24 @@
+*{
+    box-sizing: border-box;
+}
+nav{
+    display: flex;
+    background:#6ADAFF;
+    height: 5em;
+    width: 100vw; /* viewport */
+    max-width: 100%;
+    padding: 1.25em;
+    
+}
+
+main {
+    background:#38B6FF;
+    width: 100vw;
+    max-width: 100%;
+    min-height: 100vh;
+    
+}
+
+body {
+    margin: 0;
+}
