@@ -3,23 +3,17 @@ body {
     background-color: #38B6FF;
 }
 
-#login, #signup {
+#login, #signin {
+    margin: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.2fr 0.8fr;
-    margin: 20px 50px;
+    grid-template-rows: 10vh 80vh;
 }
 
-#login-header, #signup-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+#login-header, #signin-header {
     grid-column: span 2;
-}
-
-.header-title {
-    font-size: 45px;
-    color: #FFF;
-    font-family: 'Alegreya Sans', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .header-buttons {
@@ -28,18 +22,16 @@ body {
     align-items: center;
 }
 
-.btn-criar, .btn-entrar {
-    margin: 5px;
-    border-radius: 5px;
-    border: 0;
+.btn {
+    margin: 10px;
+    border-radius: 10px;
     padding: 10px;
-    font-family: 'Fira Sans', sans-serif;
 }
 
 .btn-criar {
     background-color: #38B6FF;
     color: #FFF;
-    border: 1px solid;
+    border: 1px solid #FFF;
 }
 
 .btn-criar:hover {
@@ -49,23 +41,7 @@ body {
 }
 
 .btn-entrar {
-    background-color: #FF941D;
-    color: #FFF;
-    border: 1px solid #FFF;
+    background-color: #FFF;
+    border: 1px solid;
 }
 
-.btn-entrar:hover {
-    background-color: #F3B664;
-    cursor: pointer;
-}
-
-.logo-container {
-    border: 10px solid white;
-    border-radius: 50%;
-}
-
-/*Must be fixed*/
-.logo-container img {
-    width: 450px;
-    height: 420px;
-}
