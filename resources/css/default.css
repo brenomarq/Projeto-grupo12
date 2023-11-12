@@ -4,10 +4,10 @@ body {
 }
 
 #login, #signin {
-    margin: 20px;
+    margin: 0px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 10vh 80vh;
+    grid-template-rows: 10vh 85vh;
 }
 
 #login-header, #signin-header {
@@ -24,7 +24,7 @@ body {
 
 .btn {
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 10px;
 }
 
@@ -42,6 +42,85 @@ body {
 
 .btn-entrar {
     background-color: #FFF;
-    border: 1px solid;
+    border: 1px solid #FFF;
 }
 
+.btn-entrar:hover {
+    background-color: lightgray;
+    border-color: lightgrey;
+    cursor: pointer;
+}
+
+
+/*Somente login*/
+.login-container {
+    grid-column: span 2;
+    background-color: #6ADAFF;
+    margin: 10px 30%;
+    border-radius: 15px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-icon {
+    color: #FFF;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.login-input {
+    height: 25px;
+    width: 300px;
+    margin-bottom: 10px;
+    border: 0;
+    border-radius: 10px;
+    color: #38B6FF;
+}
+
+::placeholder {
+    color: #38B6FF;
+}
+
+.login-container a {
+    color: #FFF;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.btn-login {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #FF914D;
+    border: 1px solid #FF914D;
+    color: #FFF;
+}
+
+.btn-login:hover {
+    background-color: #FFBD59;
+    border-color: #FFBD59;
+    cursor: pointer;
+}
+
+
+/*Somente signin*/
+.signin-container {
+    margin: 20px 0;
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #6ADAFF;
+    border-radius: 15px;
+}
+
+.signin-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-logo img {
+    height: 400px;
+}
