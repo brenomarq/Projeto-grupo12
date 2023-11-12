@@ -1,0 +1,95 @@
+header{
+    background-color: rgb(1, 122, 65);     /*cor header*/
+}
+#lado{
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.conta{
+    position: relative;
+    bottom: 20px;     /*cor header*/
+    left: 73%;
+    height: 40px;
+    width: 80px;
+}
+#criar_conta{
+    background-color: rgb(1, 122, 65); 
+    border: none;
+}
+#Entrar{
+    background-color: #1d06a0;
+    border-radius: 10px;
+}
+#azul {
+   
+    padding: px; 
+    background-color: #1d06a0;
+}
+#div_principal{
+    background-color: #f0f0f0;
+    padding: 10px;
+     
+    margin-left: 25%;
+    margin-right: 25%;
+    }
+#div1{
+    background-color: rgb(127, 165, 199);/*comentários */
+    height: 70px;
+    margin-top: -26px;
+    margin-left: -10px;
+    margin-right:-10px;
+}
+#div1  p {
+    margin-left: 15px;
+    top: 25px;
+    position: relative;
+}
+
+
+#div2  {
+    background-color: aqua;
+    margin-top: 0px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border: 1px solid #000; /* Adiciona borda em todas as partes da div */
+    border-top: 4px solid #00f; 
+    border-bottom: 4px solid #00f;
+    border-style: double;
+}
+#div2 span{
+    position:relative;
+    top: -30px;
+}
+#div2 p{
+    margin-top:-10px;
+    margin-left: 65px;
+    text-align: justify;
+    margin-right: 65px;
+}
+
+#div3{
+    background-color: aqua;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+#div3 span{
+    position:relative;
+    top: -30px;
+}
+#div3 p{
+    margin-top:-10px;
+    margin-left: 63px;
+    margin-right:63px;
+    text-align: justify;
+}
+#foca_{
+    width: 500px;
+    margin-left: 65px;
+    margin-right:55px;
+    margin-bottom: 30px;
+}
+
+#div4{
+    background-color: aqua;
