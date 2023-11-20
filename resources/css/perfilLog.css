@@ -90,6 +90,16 @@ body {
     margin-top: 12rem;
 }
 
+.botao-editar-perfil {
+    margin-bottom: 3px;
+    margin-top: -35px;
+    cursor: pointer;
+    color: #ffff;
+    border: none;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
 .botao-criar-post-button {
     text-indent: 6px;
 }
@@ -140,6 +150,7 @@ body {
     line-height: normal;
 }
 
+
 .cargo-user-logado {
     color: #ffffff;
     display: flex;
@@ -151,6 +162,7 @@ body {
     margin-bottom: 5px;
     font-family: Inter;
 }
+
 
 .email-user {
     color: #ffffff;
@@ -211,10 +223,13 @@ body {
     margin-left: 2em;
     margin-top:-1em ;
     margin-right: 1em;
+    padding-top: 10px;
 }
 
 .escrtito_{
     color: #FFFFFF;
+    margin-top: 5px;
+    padding-top: 5px;
 
 }
 
@@ -228,6 +243,7 @@ body {
 }
 
 .img_postada {
+    padding-top: 5px;
     vertical-align: middle;
     margin-left: 4em;
     
@@ -235,4 +251,18 @@ body {
 
 .inlineLog{
     display: flex;
+}
+
+/* Estilização ícones de comentário e editar */
+
+.icon-comment {
+    padding: 20px;
+}
+
+.icon-comment img {
+    padding-right: 5px;
+}
+
+.icon-comment-first img {
+    padding-left: 40px;
 }
