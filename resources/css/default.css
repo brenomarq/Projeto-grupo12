@@ -10,13 +10,13 @@ body {
     grid-template-rows: 10vh 85vh;
 }
 
-#login-header, #signin-header {
+#login-header, #signin-header, .navbar {
     grid-column: span 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.header-buttons {
+.nav-buttons {
     display: flex;
     justify-content: end;
     align-items: center;
