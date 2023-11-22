@@ -1,11 +1,11 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "username" TEXT NOT NULL,
-    "senha" TEXT NOT NULL,
-    "gender" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "cargo" TEXT NOT NULL,
+    "username" VARCHAR(25) NOT NULL,
+    "senha" VARCHAR(25) NOT NULL,
+    "gender" VARCHAR(15) NOT NULL,
+    "email" VARCHAR(45) NOT NULL,
+    "cargo" VARCHAR(45) NOT NULL,
     "profilePicture" TEXT NOT NULL DEFAULT '/img/foto-perfil/default.png',
     "admin" BOOLEAN DEFAULT false,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
