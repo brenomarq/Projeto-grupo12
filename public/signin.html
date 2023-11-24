@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar-se</title>
-    <link rel="stylesheet" href="./resources/css/default.css">
+    <link rel="stylesheet" href="../resources/css/default.css">
 </head>
 <body>
     <section id="signin">
         <header id="signin-header">
             <div class="logo">
-                <img src="./resources/images/cjr-logo.png" height="70px" alt="CJR logo">
+                <img src="../resources/images/cjr-logo.png" height="70px" alt="CJR logo">
             </div>
             <div class="nav-buttons">
                 <button class="btn-criar btn">Criar conta</button>
@@ -19,7 +19,7 @@
         </header>
         <div class="signin-container">
             <div class="signin-logo">
-                <img src="./resources/images/cjr-logo.png" alt="Logo da CJR">
+                <img src="../resources/images/cjr-logo.png" alt="Logo da CJR">
             </div>
             <div class="signin-info">
                 <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -27,11 +27,13 @@
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>
                 <button class="btn btn-add">Adicionar Imagem</button>
-                <input type="text" class="signin-input" placeholder="Nome">
-                <input type="text" class="signin-input" placeholder="Email">
-                <input type="text" class="signin-input" placeholder="Senha">
-                <input type="text" class="signin-input" placeholder="Gênero">
-                <input type="text" class="signin-input" placeholder="Cargo">
+                <form class="signin-form" action="#" method="get">
+                    <input type="text" class="signin-input" placeholder="Nome">
+                    <input type="text" class="signin-input" placeholder="Email">
+                    <input type="text" class="signin-input" placeholder="Senha">
+                    <input type="text" class="signin-input" placeholder="Gênero">
+                    <input type="text" class="signin-input" placeholder="Cargo">
+                </form>
                 <button class="btn btn-create">Criar Conta</button>
             </div>
         </div>

@@ -71,6 +71,11 @@ body {
     margin-bottom: 50px;
 }
 
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
 .login-input {
     height: 25px;
     width: 300px;
@@ -166,4 +171,9 @@ body {
     border: 0;
     border-radius: 10px;
     color: #38B6FF;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
 }
