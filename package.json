@@ -1,12 +1,22 @@
 {
+  "devDependencies": {
+    "@types/express": "^4.17.21"
+  },
+  "name": "projeto-grupo12",
+  "description": "Neste repositório, estaremos desenvolvendo o projeto de um blog, em um sistema parecido com o Twitter.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Breno",
+  "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.6.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^5.6.0"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.21"
-  },
-  "type": "commonjs"
+  }
 }
