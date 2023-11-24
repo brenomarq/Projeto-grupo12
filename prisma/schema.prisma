@@ -10,38 +10,37 @@ datasource db {
   url      = "file:./database.db"
 }
 
-
 model User {
-    id Int @id @default(autoincrement())
-    username String @unique
-    senha String
-    gender String 
-    email String @unique
-    cargo String
-    profilePicture String @default("/img/foto-perfil/default.png")
-    admin Boolean? @default(false)
-    createdAt DateTime @default(now())
+  id             Int      @id @default(autoincrement())
+  username       String   @unique
+  senha          String
+  gender         String
+  email          String   @unique
+  cargo          String
+  profilePicture String   @default("/img/foto-perfil/default.png")
+  admin          Boolean? @default(false)
+  createdAt      DateTime @default(now())
 
-    posts Post[]
-    comments Comment[]
+  posts    Post[]
+  comments Comment[]
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  user_id   Int   
-  content   String   
-  updated_at DateTime  @default(now())
-  created_at DateTime  @default(now())
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  content    String
+  updated_at DateTime @default(now())
+  created_at DateTime @default(now())
 
   comments Comment[]
-  user User @relation(fields: [user_id], references: [id])
+  user     User      @relation(fields: [user_id], references: [id])
 }
 
 model Comment {
   id      Int    @id @default(autoincrement())
   post_id Int
   user_id Int
-  content String 
+  content String
 
   user User @relation(fields: [user_id], references: [id])
   post Post @relation(fields: [post_id], references: [id])

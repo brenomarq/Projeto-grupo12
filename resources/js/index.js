@@ -2,8 +2,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 // CRUD ususario
- main () 
-     await prisma.user.creat({
+async function main() {
+    await prisma.user.create({
         data: {
             email: req.body.email,
             username: req.body.username,
@@ -15,11 +15,11 @@ const prisma = new PrismaClient();
 
     }),
 
-    await prisma.user.delete({
-        where: {
-            id: userId,
+        await prisma.user.delete({
+            where: {
+                id: userId,
             },
-    });    
+        });
 
 
     //CRUD post
@@ -43,15 +43,15 @@ const prisma = new PrismaClient();
         },
     });
 
-    
-    
+
+
 
 
     await prisma.post.delete({
         where: {
             id: postId,
-            },
-    });    
+        },
+    });
 
 
     //CRUD comentarios
@@ -77,6 +77,8 @@ const prisma = new PrismaClient();
     await prisma.comment.delete({
         where: {
             id: commentId,
-            },
-    });    
- 
+        },
+    });
+}
+
+main();

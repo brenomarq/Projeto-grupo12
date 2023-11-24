@@ -1,11 +1,32 @@
 import express from "express";
 
-const app = express()
+const app = express();
+app.use(express.json());
 
-app.get("/hello", callbackServido)
+/*Rotas do post*/
+app.get("/Post", (req, res) => {
 
-function callbackServido () {
-    console.log("Servidor rodando na porta 3000")
-}
+});
+
+app.post("/Post", (req, res) => {
+
+});
+
+app.delete("/Post", (req, res) => {
+
+});
+
+/*Rotas dos comentários*/
+app.get("/Comment", (req, res) => {
+
+});
+
+app.post("/Comment", (req, res) => {
+
+});
+
+app.delete("/Comment", (req, res) => {
+
+});
 
 app.listen(3000)
