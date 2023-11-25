@@ -80,5 +80,3 @@ async function main() {
         },
     });
 }
-
-main();
