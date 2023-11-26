@@ -1,9 +1,5 @@
 header{
-    background-color: rgb(1, 122, 65);     /*cor header*/
-}
-#lado{
-    margin-left: 20px;
-    margin-top: 5px;
+    background-color: rgb(23, 27, 27);     /*cor header*/
 }
 .conta{
     position: relative;
@@ -24,8 +20,6 @@ header{
    
     padding: px; 
     background-color: #1d06a0;
-}
-#div_principal{
     background-color: #f0f0f0;
     padding: 10px;
      
