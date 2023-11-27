@@ -3,7 +3,9 @@ body {
     background-color: #38B6FF;
 }
 
-#login, #signin {
+#login,
+#signin,
+#recuperar-senha {
     margin: 0px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -176,4 +178,36 @@ body {
 .signin-form {
     display: flex;
     flex-direction: column;
+}
+
+/*Tela de Recuperação de Senha*/
+.container {
+    margin: 20px 0;
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #6ADAFF;
+    border-radius: 15px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+}
+
+.logo-container img {
+    height: 400px;
+}
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-container {
+    color: #FFF;
 }
