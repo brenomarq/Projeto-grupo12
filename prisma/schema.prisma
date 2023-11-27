@@ -13,12 +13,11 @@ datasource db {
 model User {
   id             Int      @id @default(autoincrement())
   username       String   @unique
-  senha          String
+  password       String   
   gender         String
   email          String   @unique
   cargo          String
   profilePicture String   @default("/img/foto-perfil/default.png")
-  admin          Boolean? @default(false)
   createdAt      DateTime @default(now())
 
   posts    Post[]
