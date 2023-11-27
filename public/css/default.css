@@ -1,0 +1,179 @@
+/*Login and Signup pages*/
+body {
+    background-color: #38B6FF;
+}
+
+#login, #signin {
+    margin: 0px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10vh 85vh;
+}
+
+#login-header, #signin-header, .navbar {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.btn {
+    margin: 10px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.btn-criar {
+    background-color: #38B6FF;
+    color: #FFF;
+    border: 1px solid #FFF;
+}
+
+.btn-criar:hover {
+    background-color: #FFF;
+    color: #38B6FF;
+    cursor: pointer;
+}
+
+.btn-entrar {
+    background-color: #FFF;
+    border: 1px solid #FFF;
+}
+
+.btn-entrar:hover {
+    background-color: lightgray;
+    border-color: lightgrey;
+    cursor: pointer;
+}
+
+
+/*Somente login*/
+.login-container {
+    grid-column: span 2;
+    background-color: #6ADAFF;
+    margin: 10px 30%;
+    border-radius: 15px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-icon {
+    color: #FFF;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-input {
+    height: 25px;
+    width: 300px;
+    margin-bottom: 10px;
+    border: 0;
+    border-radius: 10px;
+    color: #38B6FF;
+}
+
+::placeholder {
+    color: #38B6FF;
+}
+
+.login-container a {
+    color: #FFF;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.btn-login {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #FF914D;
+    border: 1px solid #FF914D;
+    color: #FFF;
+}
+
+.btn-login:hover {
+    background-color: #FFBD59;
+    border-color: #FFBD59;
+    cursor: pointer;
+}
+
+
+/*Somente signin*/
+.signin-container {
+    margin: 20px 0;
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #6ADAFF;
+    border-radius: 15px;
+}
+
+.signin-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-logo img {
+    height: 400px;
+}
+
+.signin-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-add {
+    margin-top: 0;
+    padding: 5px;
+    background-color: #6ADAFF;
+    border: 1px solid #FFF;
+    color: #FFF;
+}
+
+.btn-add:hover {
+    background-color: #FFF;
+    color: #6ADAFF;
+    cursor: pointer;
+}
+
+.btn-create {
+    margin-top: 10px;
+    background-color: #FF914D;
+    border: 1px solid #FF914D;
+    color: #FFF;
+}
+
+.btn-create:hover {
+    background-color: #FFBD59;
+    border-color: #FFBD59;
+    cursor: pointer;
+}
+
+.signin-input {
+    height: 25px;
+    width: 300px;
+    margin-bottom: 5px;
+    border: 0;
+    border-radius: 10px;
+    color: #38B6FF;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+}
