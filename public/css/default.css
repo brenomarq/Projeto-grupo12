@@ -12,7 +12,9 @@ body {
     grid-template-rows: 10vh 85vh;
 }
 
-#login-header, #signin-header, .navbar {
+#login-header,
+#signin-header,
+.navbar {
     grid-column: span 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -194,7 +196,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 800px;
+    height: 78vh;
 }
 
 .logo-container img {
@@ -210,4 +212,32 @@ body {
 
 .password-container {
     color: #FFF;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.password-inputs {
+    height: 25px;
+    width: 300px;
+    margin-bottom: 10px;
+    border: 0;
+    border-radius: 10px;
+    color: #38B6FF;
+}
+
+.btn-confirm {
+    margin-top: 10px;
+    background-color: #FF914D;
+    border: 1px solid #FF914D;
+    color: #FFF;
+}
+
+.btn-confirm:hover {
+    background-color: #FFBD59;
+    border-color: #FFBD59;
+    cursor: pointer;
 }
