@@ -1,4 +1,8 @@
 /*Login and Signup pages*/
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #38B6FF;
 }
@@ -291,9 +295,3 @@ body {
 }
 
 /*Modal para criar post*/
-#fade {
-    display: fixed;
-    top: 100%;
-    left: 100%;
-    background-color: #FFBD59;
-}
