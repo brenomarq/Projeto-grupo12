@@ -241,3 +241,59 @@ body {
     border-color: #FFBD59;
     cursor: pointer;
 }
+
+/*Tela de perfil*/
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20rem;
+    color: #FFF;
+}
+
+.profile-elements {
+    display: flex;
+    width: 600px;
+    box-shadow: 2px 2px rgb(255, 255, 255, 0.5);
+    border-radius: 15px;
+}
+
+.profile-info {
+    width: 50%;
+    margin: 10px 20px;
+}
+
+.profile-info img {
+    border: 1px solid #FFF;
+    border-radius: 50%;
+}
+
+.profile-features {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    margin: 20px 20px;
+}
+
+.btn-profile {
+    width: 100px;
+    height: 40px;
+    border: 0;
+    margin-bottom: 5px;
+    border-radius: 7px;
+}
+
+.btn-profile:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+/*Modal para criar post*/
+#fade {
+    display: fixed;
+    top: 100%;
+    left: 100%;
+    background-color: #FFBD59;
+}

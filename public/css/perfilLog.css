@@ -1,23 +1,24 @@
-*{
+* {
     box-sizing: border-box;
 }
-nav{
+
+nav {
     display: flex;
-    background:#6ADAFF;
+    background: #6ADAFF;
     height: 5em;
-    width: 100vw; /* viewport */
+    width: 100vw;
+    /* viewport */
     max-width: 100%;
     padding: 1.25em;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-    
 }
 
 main {
-    background:#38B6FF;
+    background: #38B6FF;
     width: 100vw;
     max-width: 100%;
     min-height: 100vh;
-    
+
 }
 
 body {
@@ -28,6 +29,7 @@ body {
     max-width: 850px;
     position: relative;
 }
+
 .coluna {
     display: flex;
     flex-direction: row;
@@ -77,7 +79,7 @@ body {
     margin-left: 10px;
 }
 
-.logout-user-header-button img{
+.logout-user-header-button img {
     margin-top: 2px;
 }
 
@@ -104,9 +106,9 @@ body {
     text-indent: 6px;
 }
 
-/* Adicionando Box com info do Perfil */  
+/* Adicionando Box com info do Perfil */
 
-.inline-inicio{
+.inline-inicio {
     margin-top: 1.5em;
     display: inline-block
 }
@@ -118,6 +120,7 @@ body {
     margin-bottom: 3rem;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05);
 }
+
 .info-perfil {
     display: flex;
     justify-content: center;
@@ -135,11 +138,11 @@ body {
 
 .info-perfil-texto {
     text-align: center;
-    
+
 }
 
 .nome-user-info-perfil {
-    margin-top : 10px;
+    margin-top: 10px;
     margin-left: -70px;
     margin-bottom: 7px;
     color: #23424A;
@@ -173,33 +176,33 @@ body {
     font-size: 17px;
 }
 
-.icon-cargo img{
-    width: 20px; 
-    height: 20px; 
-    margin-right: 10px; 
-    vertical-align: middle; 
+.icon-cargo img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
 .icon-email img {
-    width: 20px; 
-    height: 20px; 
-    margin-right: 5px; 
-    vertical-align: middle; 
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 /* Fim da box Com info do perifl */
 
 
 
-.perfilpost{
+.perfilpost {
     border-radius: 100%;
     display: inline-block;
     height: 48px;
     vertical-align: middle;
-    
+
 }
 
-.divpublicacao{
+.divpublicacao {
     color: #D9D9D9;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -209,24 +212,26 @@ body {
     margin-left: 1.5em;
     margin-top: 1em;
 }
+
 .nome {
     color: #D9D9D9;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5em;
     margin: 0%;
 }
-.nome_data{
+
+.nome_data {
     display: inline;
 }
 
-.escrito{
+.escrito {
     margin-left: 2em;
-    margin-top:-1em ;
+    margin-top: -1em;
     margin-right: 1em;
     padding-top: 10px;
 }
 
-.escrtito_{
+.escrtito_ {
     color: #FFFFFF;
     margin-top: 5px;
     padding-top: 5px;
@@ -234,7 +239,7 @@ body {
 }
 
 
-.data{
+.data {
     color: #FFFFFF;
 }
 
@@ -246,10 +251,10 @@ body {
     padding-top: 5px;
     vertical-align: middle;
     margin-left: 4em;
-    
+
 }
 
-.inlineLog{
+.inlineLog {
     display: flex;
 }
 
