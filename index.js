@@ -21,11 +21,21 @@ app.get('/', (req, res) => {
 });
 
 // página de cadastro
-app.get('/signuppage', (req, res) => {
+app.get('/signup-page', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'cadastro.html'));
 });
 
-// rotas de usuários
+// página de login
+app.get('/login-page', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+// página de recuperação de senha
+app.get('/recover-page', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'recuperarSenha.html'));
+});
+
+// rotas de usuários ***
 app.use('/users', userRoutes); // Prefixo '/users' para as rotas dos usuários
 
 // start (3000)
