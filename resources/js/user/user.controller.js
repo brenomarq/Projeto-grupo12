@@ -73,8 +73,50 @@ async function deleteUser(req, res) {
   }
 }
 
+// alterar senha do usuário
+
+async function updateUserPassword(req, res) {
+  const { email, newPassword, confirmPassword } = req.body;
+
+  try {
+    console.log('Updating user password for email:', email);
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!user) {
+      console.log('User not found with email:', email);
+      return res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
+
+    if (newPassword !== confirmPassword) {
+      console.log('As senhas não correspondem');
+      return res.status(400).json({ error: 'As senhas não correspondem.' });
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: {
+        email: email,
+      },
+      data: {
+        password: newPassword,
+      },
+    });
+
+    console.log('User password updated:', updatedUser);
+    res.json({ message: 'Senha do usuário atualizada com sucesso!', updatedUser });
+  } catch (error) {
+    console.error('Error updating user password:', error);
+    res.status(500).json({ error: 'Erro ao atualizar a senha do usuário.' });
+  }
+}
+
 module.exports = {
   createUser,
   listUsers,
   deleteUser,
+  updateUserPassword,
 };

@@ -1,8 +1,8 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const path = require('path');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const cors = require('cors'); // middleware para permitir requisições de outros domínios evitando block do navegador :(
+const bodyParser = require('body-parser'); // middleware para fazer o parse do body das requisições
 const userRoutes = require('./resources/js/user/user.routes'); // Importando as rotas dos usuários
 
 const app = express();

@@ -12,6 +12,23 @@ async function newUser(userData) {
   }
 }
 
+async function updateUserPassword(userId, newPassword) {
+  try {
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        password: newPassword,
+      },
+    });
+    return updatedUser;
+  } catch (error) {
+    throw new Error('Erro ao atualizar a senha do usuário.');
+  }
+}
+
 module.exports = {
   newUser,
+  updateUserPassword,
 };
