@@ -35,6 +35,11 @@ app.get('/recover-page', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'recuperarSenha.html'));
 });
 
+// feed deslogado
+app.get('/feed-deslogado', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'feedDeslog.html'));
+});
+
 // rotas de usuários ***
 app.use('/users', userRoutes); // Prefixo '/users' para as rotas dos usuários
 
