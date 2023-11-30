@@ -1,23 +1,28 @@
-import jwt from "jsonwebtoken";
-import UserService from "./user.service.js";
+const jwt = require('jsonwebtoken');
+const UserService = require('../user/user.service');
 
 class AuthService {
   async signIn(email, password) {
-    const user = await UserService.getUserByEmail(email); // IMPLEMENTAR FUNÇÃO getUserByEmail
-    
-    if (!user) {
-      throw new Error('Usuário não encontrado');
-    }
-    if (user.password !== password) {
-      throw new Error('Senha inválida');
-    }
-    // se as credenciais estiverem corretas, gerar um token JWT
-    const token = jwt.sign({ id: user.id, email: user.email }, "secret", {
-      expiresIn: '1d',
-    });
+    try {
+      const user = await UserService.getUserByEmail(email);
 
-    return token;
+      if (!user) {
+        throw new Error('Usuário não encontrado.');
+      }
+
+      if (user.password !== password) {
+        throw new Error('Senha inválida.');
+      }
+
+      const token = jwt.sign({ id: user.id, email: user.email }, 'your_secret_key', {
+        expiresIn: '1d',
+      });
+
+      return token;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
 
-export default AuthService;
+module.exports = new AuthService();

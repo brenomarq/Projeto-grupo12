@@ -1,6 +1,7 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const path = require('path');
+const authRoutes = require('./resources/js/auth/auth.routes');
 const cors = require('cors'); // middleware para permitir requisições de outros domínios evitando block do navegador :(
 const bodyParser = require('body-parser'); // middleware para fazer o parse do body das requisições
 const userRoutes = require('./resources/js/user/user.routes'); // Importando as rotas dos usuários
@@ -14,6 +15,9 @@ app.use(bodyParser.json());
 // config para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+
+// rota de autenticacao
+app.use('/auth', authRoutes);
 
 // homepage
 app.get('/', (req, res) => {

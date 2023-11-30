@@ -112,6 +112,7 @@ body {
     border: 1px solid #FF914D;
     color: #FFF;
     width: 80px;
+    margin-left: 6rem;
 }
 
 .btn-login:hover {

@@ -28,7 +28,21 @@ async function updateUserPassword(userId, newPassword) {
   }
 }
 
+async function getUserByEmail(email) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    return user;
+  } catch (error) {
+    throw new Error('Erro ao buscar usuário.');
+  }
+}
+
 module.exports = {
   newUser,
   updateUserPassword,
+  getUserByEmail,
 };

@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@500&family=Fira+Sans:wght@300;400&family=Vazirm
     atn:wght@100;300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
 </head>
 <body>
     <section id="login">
@@ -28,11 +30,48 @@
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
             </svg>
-            <input class="login-input username" type="text" placeholder="Email">
-            <input class="login-input password" type="password" placeholder="Senha">
-            <a href="./recover-page" style="transform: scale(1.1); margin-top: 25px;">Esqueceu sua senha? Recupere aqui!</a>
-            <button class="btn btn-login">Entrar</button>
+            <form id="loginForm" class="login-form">
+                <input id="emailField" class="login-input username" autocomplete="current-email" placeholder="Email" name="email">
+                <input id="passwordField" class="login-input password" type="password" placeholder="Senha" autocomplete="current-password" name="password">
+                <a href="./recover-page" style="padding-left: 2.3rem; transform: scale(1.1); margin-top: 25px;">Esqueceu sua senha? Recupere aqui!</a>
+                <button type="submit" class="btn btn-login">Entrar</button>
+            </form>
         </div>
+        <!-- login autenticado -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const loginForm = document.getElementById('loginForm');
+          const errorMessage = document.getElementById('error-message');
+      
+          loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+      
+            const email = document.querySelector('.username').value;
+            const password = document.querySelector('.password').value;
+      
+            try {
+              const response = await axios.post('/auth/login', {
+                email: email,
+                password: password
+              });
+      
+              const token = response.data.token;
+      
+              localStorage.setItem('token', token);
+              console.log('Token de autenticação:', token);
+              console.log('Login bem-sucedido!');
+              alert('Login bem-sucedido!')
+      
+              // ir pro feed com login bem-sucedido
+              window.location.href = '/feed-deslogado';
+            } catch (error) {
+              console.error('Erro ao fazer login:', error.response.data.message);
+              alert('Erro ao fazer login: ' + error.response.data.message);
+              }
+            }
+          );
+        });
+    </script>
     </section>
 </body>
 </html>
