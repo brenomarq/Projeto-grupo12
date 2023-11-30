@@ -20,6 +20,8 @@ body {
 #signin-header,
 .navbar {
     grid-column: span 2;
+    margin: 15px;
+    margin-bottom: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -76,7 +78,7 @@ body {
 .user-icon {
     color: #FFF;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 45px;
 }
 
 .login-form {
@@ -104,11 +106,12 @@ body {
 }
 
 .btn-login {
-    margin-top: 50px;
+    margin-top: 42px;
     margin-bottom: 50px;
     background-color: #FF914D;
     border: 1px solid #FF914D;
     color: #FFF;
+    width: 80px;
 }
 
 .btn-login:hover {
@@ -139,14 +142,25 @@ body {
 }
 
 .signin-info {
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transform: scale(1.1);
+}
+
+.signin-input,
+.login-input {
+    padding: 10px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    width: 320px;   
 }
 
 .btn-add {
     margin-top: 0;
+    margin-bottom: 35px;
     padding: 5px;
     background-color: #6ADAFF;
     border: 1px solid #FFF;
@@ -160,7 +174,7 @@ body {
 }
 
 .btn-create {
-    margin-top: 10px;
+    margin-top: 31px;
     background-color: #FF914D;
     border: 1px solid #FF914D;
     color: #FFF;
@@ -186,14 +200,22 @@ body {
     flex-direction: column;
 }
 
+.signin-container {
+    max-width: 100%;
+    width: 1750px;
+    margin: 0 auto; 
+}
+
 /*Tela de Recuperação de Senha*/
 .container {
-    margin: 20px 0;
     grid-column: span 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: #6ADAFF;
     border-radius: 15px;
+    max-width: 100%;
+    width: 1750px;
+    margin: 0 auto; 
 }
 
 .logo-container {
@@ -217,6 +239,7 @@ body {
 .password-container {
     color: #FFF;
     font-family: 'Alegreya Sans', sans-serif;
+    transform: scale(1.05);
 }
 
 .password-form {
@@ -226,15 +249,18 @@ body {
 
 .password-inputs {
     height: 25px;
-    width: 300px;
     margin-bottom: 10px;
     border: 0;
     border-radius: 10px;
     color: #38B6FF;
+    padding: 10px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    width: 320px;  
 }
 
 .btn-confirm {
-    margin-top: 10px;
+    margin-top: 20px;
     background-color: #FF914D;
     border: 1px solid #FF914D;
     color: #FFF;
