@@ -19,8 +19,8 @@
                 <img src="./images/cjr-logo.png" height="70px" alt="CJR logo">
             </div>
             <div class="nav-buttons">
-                <button class="btn-criar btn">Criar conta</button>
-                <button class="btn-entrar btn">Entrar</button>
+                <button onclick="window.location.href='/signup-page'" class="btn-criar btn">Criar conta</button>
+                <button onclick="window.location.href='/login-page'" class="btn-entrar btn">Entrar</button>
             </div>
         </nav>
         <div class="container">
@@ -65,6 +65,10 @@
                         });
                         const responseData = await response.json();
                         console.log(responseData); 
+
+                        alert('Senha atualizada com sucesso! Redirecionando para a tela de login.');
+                        window.location.href = '/login-page'; 
+
                     } catch (error) {
                         console.error('Erro ao atualizar senha:', error);
                     }

@@ -69,11 +69,13 @@
 
                 const data = await response.json();
                 console.log('Resposta do servidor:', data); // Verifique a resposta do servidor
-
-                // Adicione lógica adicional aqui, como redirecionar para outra página ou exibir uma mensagem de sucesso
+                
+                alert('Cadastro concluído com sucesso!');
+                window.location.href = '/login-page';
+        
             } catch (error) {
                 console.error('Erro ao cadastrar usuário:', error);
-                // Lógica para lidar com erros, como exibir uma mensagem de erro para o usuário
+                alert('Erro ao cadastrar usuário!');
             }
         });
     </script>
