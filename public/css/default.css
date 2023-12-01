@@ -79,6 +79,7 @@ body {
     color: #FFF;
     margin-top: 50px;
     margin-bottom: 45px;
+    border-radius: 50%;
 }
 
 .login-form {
@@ -146,9 +147,9 @@ body {
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    transform: scale(1.1);
+    transform: scale(1);
 }
 
 .signin-input,
@@ -376,4 +377,18 @@ a.button {
 
 #modal.hide {
     top: 0;
+}
+
+/*Editar perfil*/
+.btn-atualizar {
+    margin-top: 20px;
+    background-color: #FF914D;
+    border: 1px solid #FF914D;
+    color: #FFF;
+    border: 0;
+}
+
+.btn-atualizar:hover {
+    background-color: #FFBD59;
+    cursor: pointer;
 }

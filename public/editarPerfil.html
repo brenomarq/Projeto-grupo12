@@ -9,6 +9,35 @@
 </head>
 
 <body>
+    <section id="editProfile">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/cjr-logo.png" height="70px" alt="CJR logo">
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-criar btn">Criar conta</button>
+                <button class="btn-entrar btn">Entrar</button>
+            </div>
+        </nav>
+        <!--Código reutilizado da tela de cadastro-->
+        <div class="signin-container">
+            <div class="signin-logo">
+                <img src="./images/cjr-logo.png" alt="Logo da CJR">
+            </div>
+            <form id="signupForm">
+                <div class="signin-info">
+                    <img class="user-icon" height="100px" src="./images/FotoPerfil1.png" alt="foto de perfil">
+                    <button class="btn btn-add">Modificar Image</button>
+                    <input type="text" id="name" class="signin-input" placeholder="Nome">
+                    <input type="email" id="userEmail" class="signin-input" placeholder="Email">
+                    <input type="password" id="userPassword" class="signin-input" placeholder="Senha">
+                    <input type="text" id="userGender" class="signin-input" placeholder="Gênero">
+                    <input type="text" id="userRole" class="signin-input" placeholder="Cargo">
+                    <button type="submit" class="btn btn-atualizar">Atualizar perfil</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <script src="./js/scripts.js"></script>
 </body>
