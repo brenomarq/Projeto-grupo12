@@ -6,28 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitter CJR - Feed logado</title>
     <link rel="stylesheet" href=".\css\feedDeslog.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            try {
+                const response = await axios.get('/users/me', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                const userData = response.data; 
+
+                const profileLink = document.querySelector('.perfil a');
+                profileLink.textContent = userData.username; 
+                profileLink.href = '/perfil-logado'; 
+                const profileImage = document.querySelector('.perfil img');
+                
+            } catch (error) {
+                console.error('Erro ao buscar informações do usuário:', error);
+            }
+        }
+    });
+</script>
 
 <body>
     <nav>
         <img class="logo_cjr" src=".\images\Logo_CJR_Estilizado.png" alt="Logo estilizado CJR">
-
         <div style="flex-grow: 1;"></div>
-
         <div class="perfil">
-
-            <a herf="perfil"><button
-                    style="background: #6ADAFF;border-radius: 16px; padding: 12px; cursor: pointer; color:#ffff; border: none; font-size: 16px;">Joazin
-                    Gamer</button> </a>
-            <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil" herf="perfil">
+            <a href="/perfil-logado" style="background: #6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#ffff; border: none; font-size: 17px; text-decoration: none;"></a>
+            <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil" href="perfil">
         </div>
         <div class="espaco"> </div>
         <div class="logout">
-            <img class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" herf="feed.html">
-
+            <img class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" href="feed.html">
         </div>
-
     </nav>
 
     <main class="coluna">

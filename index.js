@@ -5,6 +5,9 @@ const authRoutes = require('./resources/js/auth/auth.routes');
 const cors = require('cors'); // middleware para permitir requisições de outros domínios evitando block do navegador :(
 const bodyParser = require('body-parser'); // middleware para fazer o parse do body das requisições
 const userRoutes = require('./resources/js/user/user.routes'); // Importando as rotas dos usuários
+const jwt = require('jsonwebtoken');
+const authenticateToken = require('./resources/js/auth/authMiddleware'); 
+
 
 const app = express();
 app.use(cors());
@@ -14,7 +17,7 @@ app.use(bodyParser.json());
 
 // config para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+// app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 
 // rota de autenticacao
 app.use('/auth', authRoutes);
@@ -44,8 +47,63 @@ app.get('/feed-deslogado', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'feedDeslog.html'));
 });
 
+// feed logado
+app.get('/feed-logado', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'feedLog.html'));
+});
+
+// perfil logado
+app.get('/perfil-logado', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'perfilLog.html'));
+});
+
 // rotas de usuários ***
 app.use('/users', userRoutes); // Prefixo '/users' para as rotas dos usuários
+
+
+// rota para buscar informações do usuário logado
+app.get('/users/me', (req, res) => {
+    const token = req.headers.authorization.split(' ')[1]; // Obtendo o token do header Authorization
+    jwt.verify(token, 'secret', async (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ message: 'Token inválido' });
+      }
+      try {
+        const user = await prisma.user.findUnique({
+          where: {
+            id: decoded.id
+          }
+        });
+        if (!user) {
+          return res.status(404).json({ message: 'Usuário não encontrado' });
+        }
+        // retornar os dados do usuário
+        return res.status(200).json(user);
+      } catch (error) {
+        return res.status(500).json({ message: 'Erro ao buscar informações do usuário' });
+      }
+    });
+  });
+
+// rota para buscar informações do perfil do usuário logado
+app.get('/profile', authenticateToken, async (req, res) => {
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: req.user.id // Obtém o ID do usuário a partir do middleware
+            }
+        });
+        if (!user) {
+            return res.status(404).json({ message: 'Perfil de usuário não encontrado' });
+        }
+        // Retorne os dados do perfil do usuário
+        return res.status(200).json(user);
+    } catch (error) {
+        return res.status(500).json({ message: 'Erro ao buscar informações do perfil do usuário' });
+    }
+});
+
+
 
 // start (3000)
 const PORT = 3000;

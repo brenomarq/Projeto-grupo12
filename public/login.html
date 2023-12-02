@@ -63,7 +63,7 @@
               alert('Login bem-sucedido!')
       
               // ir pro feed com login bem-sucedido
-              window.location.href = '/feed-deslogado';
+              window.location.href = '/feed-logado';
             } catch (error) {
               console.error('Erro ao fazer login:', error.response.data.message);
               alert('Erro ao fazer login: ' + error.response.data.message);

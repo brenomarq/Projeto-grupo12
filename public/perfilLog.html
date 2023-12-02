@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitter CJR - Perfil Logado</title>
     <link rel="stylesheet" href="./css/perfilLog.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -138,6 +138,38 @@
 
                 </section>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const token = localStorage.getItem('token');
+    
+            if (token) {
+                try {
+                    const response = await axios.get('/users/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+    
+                    const userData = response.data;
+    
+                    // Exibindo informações do usuário no perfil
+                    const usernameElement = document.querySelector('.nome-user-info-perfil');
+                    const emailElement = document.querySelector('.email-user');
+                    const cargoElement = document.querySelector('.cargo-user-logado');
+                    const headerButton = document.querySelector('.nome-user-logado-button');
+    
+                    usernameElement.textContent = userData.username;
+                    emailElement.textContent = `Email: ${userData.email}`;
+                    cargoElement.textContent = `Cargo: ${userData.cargo}`;
+                    headerButton.textContent = userData.username; 
+    
+                } catch (error) {
+                    console.error('Erro ao buscar informações do usuário:', error);
+                }
+            }
+        });
+    </script>    
+</body>
 </body>
 
 </html>
