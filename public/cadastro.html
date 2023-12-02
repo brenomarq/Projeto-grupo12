@@ -43,7 +43,6 @@
     <script>
         document.getElementById('signupForm').addEventListener('submit', async function(event) {
             event.preventDefault();
-            console.log('Submit do formulário acionado.');
 
             const username = document.getElementById('name').value;
             const email = document.getElementById('userEmail').value;
@@ -60,7 +59,6 @@
             };
 
             try {
-                console.log('Enviando requisição para criar usuário...');
                 const response = await fetch('http://localhost:3000/users/create', {
                     method: 'POST',
                     headers: {
@@ -70,11 +68,14 @@
                 });
 
                 const data = await response.json();
-                console.log('Resposta do servidor:', data); // Verifique a resposta do servidor
-                
-                alert('Cadastro concluído com sucesso!');
-                window.location.href = '/login-page';
-        
+
+                if (response.ok) {
+                    alert('Cadastro concluído com sucesso!');
+                    window.location.href = '/login-page';
+                } else {
+                    alert(data.error); 
+                }
+
             } catch (error) {
                 console.error('Erro ao cadastrar usuário:', error);
                 alert('Erro ao cadastrar usuário!');
