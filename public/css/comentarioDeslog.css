@@ -10,6 +10,32 @@ html, body {
     position:relative;
     top: 10px;
 }
+.lixo{
+    position: relative;
+    left: 580px;
+    top: -70px;
+}
+#texto2{
+    position: relative;
+    top: -30px;
+}
+#editar2{
+    height: 30px;
+    position:relative;
+    left: 60px;
+}
+#editar1{
+    height: 30px;
+    position: relative;
+    top: -50px;
+    left: 60px;
+
+}
+.lixo2{
+    position: relative;
+    left: 525px;
+    top: -70px;
+}
 .conta{
     position: relative;
     bottom: 10px;     /*cor header*/
@@ -66,6 +92,8 @@ hr{
 }
 #texto{
     font-family: sans-serif;
+    position :relative;
+    top: -50px;
 }
 .fotoperfil{
     border-radius: 100%;
