@@ -104,8 +104,9 @@ carregarPosts();
 
 async function carregarPosts() {
 try {
-    const response = await fetch('http://localhost:3000/posts'); // Substitua pela sua URL de endpoint
+    const response = await fetch('http://localhost:3000/post'); // Substitua pela sua URL de endpoint
     const posts = await response.json();
+    console.log(posts)
 
     const postList = document.getElementById('postList');
     postList.innerHTML = '';
@@ -155,6 +156,43 @@ try {
     console.error('Erro ao excluir post:', error);
 }
 }
+document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('name').value;
+            
+           
+        
+            const userData = {
+                username,
+                content,
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/users/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Cadastro concluído com sucesso!');
+                    window.location.href = '/login-page';
+                } else {
+                    alert(data.error); 
+                }
+
+            } catch (error) {
+                console.error('Erro ao cadastrar usuário:', error);
+                alert('Erro ao cadastrar usuário!');
+            }
+        });
+   
+
 
 </script>
 </html>

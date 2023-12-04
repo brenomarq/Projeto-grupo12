@@ -74,7 +74,7 @@ async function createPost(req, res) {
 async function listPosts(req, res) {
   try {
     console.log('Fetching all posts...');
-    const posts= await prisma.posts.findMany();
+    const posts= await prisma.post.findMany();
     console.log('Retrieved posts:', posts);
     res.json(posts);
   } catch (error) {

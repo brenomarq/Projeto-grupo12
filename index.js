@@ -7,7 +7,7 @@ const bodyParser = require('body-parser'); // middleware para fazer o parse do b
 const userRoutes = require('./resources/js/user/user.routes'); // Importando as rotas dos usuários
 const jwt = require('jsonwebtoken');
 const authenticateToken = require('./resources/js/auth/authMiddleware'); 
-
+const postRoutes = require('./resources/js/posts/post.routes.js')
 
 const app = express();
 app.use(cors());
@@ -21,7 +21,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // rota de autenticacao
 app.use('/auth', authRoutes);
-
+//rota post
+app.use(postRoutes);
 // homepage
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
@@ -103,6 +104,8 @@ app.get('/profile', authenticateToken, async (req, res) => {
     }
 });
 
+//Criar post
+app.get('')
 
 
 // start (3000)

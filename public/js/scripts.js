@@ -4,6 +4,8 @@ const openCreatePost = document.querySelector(".btn-criarpost");
 const closeCreatePost = document.querySelector(".btn-fechar");
 const modal = document.querySelector("#modal");
 const fade = document.querySelector("#fade");
+const botao= document.querySelector(".btn-post ");
+botao.addEventListener("click", () => toggleModal())
 
 const toggleModal = () => {
     [modal, fade].forEach((element) => element.classList.toggle("hide"));
