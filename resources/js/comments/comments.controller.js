@@ -71,12 +71,25 @@ async function createComment(req, res) {
     }
   }
   
-  
+  //listar comentarios
+  async function listComments(req, res) {
+    try {
+      console.log('Fetching all comments...');
+      const comments= await prisma.comment.findMany();
+      console.log('Retrieved comments:',comments);
+      res.json(comments);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+      res.status(500).json({ error: 'Erro ao listar comentários.' });
+    }
+  }
+
+
   module.exports = {
     
     createComment,
     updateCommentContent,
     deleteComment,
-  
+    listComments,
   };
   
