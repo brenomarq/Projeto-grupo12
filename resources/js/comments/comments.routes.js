@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { createPost, listPosts,deletePost, updatePostContent } = require('./posts.controller');
+const { createComment, updateCommentContent, deleteComment, listComments } = require('./comments.controller');
 
-async function postar (req, res) {
+async function comentar (req, res) {
 try {
     const response = await fetch('http://localhost:3000/users/create', {
         method: 'POST',
@@ -18,8 +18,8 @@ catch(error){
 }
 };
 
-router.post('/post', createPost);
-router.get('/post', listPosts);
-router.delete('/post/:id',deletePost);
-router.patch('/post/:id',updatePostContent );
+router.post('/post', createComment);
+router.get('/post', listComments);
+router.delete('/post/:id',deleteComment);
+router.patch('/post/:id',updateCommentContent );
 module.exports = router;

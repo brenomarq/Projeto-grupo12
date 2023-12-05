@@ -38,16 +38,23 @@
 <body>
     <nav>
         <img class="logo_cjr" src=".\images\Logo_CJR_Estilizado.png" alt="Logo estilizado CJR">
+
         <div style="flex-grow: 1;"></div>
+
         <div class="perfil">
-            <a href="/perfil-logado" style="background: #6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#ffff; border: none; font-size: 17px; text-decoration: none;"></a>
+            <a href="perfil"> 
+                <button style="background: #6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color: #ffff; border: none; font-size: 13px; text-decoration: none;">Nome do Usuário</button>
+            </a>
             <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil" href="perfil">
         </div>
         <div class="espaco"> </div>
         <div class="logout">
-            <img class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" href="feed.html">
+            <img class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" herf="feed.html">
+
         </div>
+
     </nav>
+
 
     <main class="coluna">
         <section class="Publicacoes">
@@ -55,10 +62,11 @@
                 <div class="inlineLog">
                     <p class="divpublicacao" style="color: #FFFFFF;"><strong>Publicações</strong></p>
                     <div style="flex-grow: 1;"></div>
-                    <a herf="postar"><button
-                            style="background: #6ADAFF;border-radius: 16px; padding: 0.5em; cursor: pointer; color:#ffff; border: none; font-size: 16px;">Criar
-                            Post</button> </a>
+                    <a href="postar">
+                        <button style="background: #6ADAFF; border-radius: 16px; padding: 0.5em; cursor: pointer; color: #ffff; border: none; font-size: 16px; margin-top: 10px;">Criar Post</button>
+                    </a>
                 </div>
+                
 
                 <hr size="3" width="100%" color="#FFFFFF">
 
@@ -66,75 +74,124 @@
                     <div class="inline">
                         <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil">
                         <div class="nome_data">
-                            <a href="perfil"><button
-                                    style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin
-                                    Gamer</button> </a>
+                            <a href="perfil">
+                                <button style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin Gamer</button>
+                            </a>
                             <p class="data">22/10/2023</p>
-
-                            <div style="flex-grow: 1;"></div>
-
                         </div>
                     </div>
                     <div class="escrito">
-                        <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not
-                            simply random text. It has roots in a piece of classical Latin literature from 45 BC, making
-                            it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in
-                            Virginia, looked up one of the more obscure Latin</p>
+                        <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
                     </div>
-                    <div class="comentarioEditar">
-                        <img class="comentario" src="./images/Comentario.png" alt="Imagem Comentario" herf="comentar">
-                        <img class="editar" src="./images/Editar.png" alt="Imagem editar" herf="editar">
-                        <img class="Apagar" src=".\images\Lixo.png" alt="Imagem do Lixo" herf="Apagar">
+                    <div class="comentarioEditar" style="background:#6ADAFF; padding: 10px; border-radius: 16px; margin-top: 10px;">
+                        <img class="comentario" src="./images/Comentario.png" alt="Imagem Comentario" href="comentar">
+                        <img class="editar" src=".\images\editar_post.png" alt="Imagem editar" href="editar">
+                        <img class="Apagar" src=".\images\Lixo.png" alt="Imagem do Lixo" href="apagar">
                     </div>
-
                 </div>
+                
                 <div class="espaco"> </div>
 
-                <div class="twittes">
-                    <div class="inline">
-                        <img class="perfilpost" src=".\images\FotoPerfil2.png" alt="Imagem de perfil">
-                        <div class="nome_data">
-                            <a href="perfil"><button
-                                    style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Foca
-                                    Plays</button> </a>
-                            <p class="data">22/10/2023</p>
-                        </div>
-                    </div>
-                    <div class="escrito">
-                        <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not
-                            simply random text. It has roots in a piece of classical Latin literature from 45 BC, making
-                            it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in
-                            Virginia, looked up one of the more obscure Latin</p>
-                    </div>
-
-                </div>
-                <div class="espaco"> </div>
-
-                <div class="twittes">
-                    <div class="inline">
-                        <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil">
-                        <div class="nome_data">
-                            <a href="perfil"><button
-                                    style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin
-                                    Gamer</button> </a>
-                            <p class="data">22/10/2023</p>
-                        </div>
-                    </div>
-                    <div class="escrito">
-                        <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not
-                            simply random text. It has roots in a piece of classical Latin literature from 45 BC, making
-                            it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in
-                            Virginia, looked up one of the more obscure Latin</p>
-                    </div>
-                    <div class="img_postada">
-                        <img class="imgpostada" src=".\images\ImagemPostada.png" alt="Imagem postada">
-                    </div>
-                </div>
-            </div>
-            <div class="espaco"> </div>
-
+                
         </section>
     </main>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+carregarPosts();
+});
 
+async function carregarPosts() {
+try {
+    const response = await fetch('http://localhost:3000/post'); // Substitua pela sua URL de endpoint
+    const posts = await response.json();
+    console.log(posts)
+
+    const postList = document.getElementById('postList');
+    postList.innerHTML = '';
+
+    posts.forEach(post => {
+        const listItem = document.createElement('li');
+        listItem.textContent = post.content;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Excluir';
+        deleteButton.onclick = () => excluirPost(post.id);
+
+        listItem.appendChild(deleteButton);
+        postList.appendChild(listItem);
+    });
+} catch (error) {
+    console.error('Erro ao carregar posts:', error);
+}
+}
+
+async function criarPost() {
+const postContent = document.getElementById('postContent').value;
+
+try {
+    await fetch('http://localhost:3000/createPost', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content: postContent }),
+    });
+
+    carregarPosts(); // Recarrega a lista após criar o post
+} catch (error) {
+    console.error('Erro ao criar post:', error);
+}
+}
+
+async function excluirPost(postId) {
+try {
+    await fetch(`http://localhost:3000/deletePost/${postId}`, {
+        method: 'DELETE',
+    });
+
+    carregarPosts(); // Recarrega a lista após excluir o post
+} catch (error) {
+    console.error('Erro ao excluir post:', error);
+}
+}
+document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('name').value;
+            
+           
+        
+            const userData = {
+                username,
+                content,
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/users/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Cadastro concluído com sucesso!');
+                    window.location.href = '/login-page';
+                } else {
+                    alert(data.error); 
+                }
+
+            } catch (error) {
+                console.error('Erro ao cadastrar usuário:', error);
+                alert('Erro ao cadastrar usuário!');
+            }
+        });
+   
+
+
+</script>
 </html>
