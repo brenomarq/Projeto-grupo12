@@ -23,11 +23,11 @@
 
                 const userData = response.data; 
 
+                // exibição das informações do usuário no header
                 const profileLink = document.querySelector('.perfil a');
                 profileLink.textContent = userData.username; 
-                profileLink.href = '/perfil-logado'; 
-                const profileImage = document.querySelector('.perfil img');
-                
+                profileLink.href = '/perfil-logado'; // link para o perfil do usuário
+ 
             } catch (error) {
                 console.error('Erro ao buscar informações do usuário:', error);
             }
@@ -38,21 +38,15 @@
 <body>
     <nav>
         <img class="logo_cjr" src=".\images\Logo_CJR_Estilizado.png" alt="Logo estilizado CJR">
-
         <div style="flex-grow: 1;"></div>
-
         <div class="perfil">
-            <a href="perfil"> 
-                <button style="background: #6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color: #ffff; border: none; font-size: 13px; text-decoration: none;">Nome do Usuário</button>
-            </a>
+            <a href="/perfil-logado" style="background: #6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#ffff; border: none; font-size: 17px; text-decoration: none;"></a>
             <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil" href="perfil">
         </div>
         <div class="espaco"> </div>
         <div class="logout">
-            <img class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" herf="feed.html">
-
+            <img class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" href="feed.html">
         </div>
-
     </nav>
 
 
@@ -68,130 +62,106 @@
                 </div>
                 
 
-                <hr size="3" width="100%" color="#FFFFFF">
+                <hr size="3" width="100%" color="#FFFFFF" style=" margin-bottom: 2rem;">
 
-                <div class="twittes">
-                    <div class="inline">
-                        <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil">
-                        <div class="nome_data">
-                            <a href="perfil">
-                                <button style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin Gamer</button>
-                            </a>
-                            <p class="data">22/10/2023</p>
-                        </div>
-                    </div>
-                    <div class="escrito">
-                        <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
-                    </div>
-                    <div class="comentarioEditar" style="background:#6ADAFF; padding: 10px; border-radius: 16px; margin-top: 10px;">
-                        <img class="comentario" src="./images/Comentario.png" alt="Imagem Comentario" href="comentar">
-                        <img class="editar" src=".\images\editar_post.png" alt="Imagem editar" href="editar">
-                        <img class="Apagar" src=".\images\Lixo.png" alt="Imagem do Lixo" href="apagar">
-                    </div>
-                </div>
-                
-                <div class="espaco"> </div>
-
-                
+                <ul id="postList"></ul>
+            </div>
         </section>
     </main>
-</body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-carregarPosts();
-});
 
-async function carregarPosts() {
-try {
-    const response = await fetch('http://localhost:3000/post'); // Substitua pela sua URL de endpoint
-    const posts = await response.json();
-    console.log(posts)
-
-    const postList = document.getElementById('postList');
-    postList.innerHTML = '';
-
-    posts.forEach(post => {
-        const listItem = document.createElement('li');
-        listItem.textContent = post.content;
-
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Excluir';
-        deleteButton.onclick = () => excluirPost(post.id);
-
-        listItem.appendChild(deleteButton);
-        postList.appendChild(listItem);
-    });
-} catch (error) {
-    console.error('Erro ao carregar posts:', error);
-}
-}
-
-async function criarPost() {
-const postContent = document.getElementById('postContent').value;
-
-try {
-    await fetch('http://localhost:3000/createPost', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ content: postContent }),
-    });
-
-    carregarPosts(); // Recarrega a lista após criar o post
-} catch (error) {
-    console.error('Erro ao criar post:', error);
-}
-}
-
-async function excluirPost(postId) {
-try {
-    await fetch(`http://localhost:3000/deletePost/${postId}`, {
-        method: 'DELETE',
-    });
-
-    carregarPosts(); // Recarrega a lista após excluir o post
-} catch (error) {
-    console.error('Erro ao excluir post:', error);
-}
-}
-document.getElementById('signupForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('name').value;
-            
-           
-        
-            const userData = {
-                username,
-                content,
-            };
-
-            try {
-                const response = await fetch('http://localhost:3000/users/create', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(userData)
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    alert('Cadastro concluído com sucesso!');
-                    window.location.href = '/login-page';
-                } else {
-                    alert(data.error); 
-                }
-
-            } catch (error) {
-                console.error('Erro ao cadastrar usuário:', error);
-                alert('Erro ao cadastrar usuário!');
-            }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            carregarPosts();
         });
-   
 
+        async function carregarPosts() {
+            try {
+                const response = await fetch('http://localhost:3000/post'); 
+                const posts = await response.json();
 
-</script>
+                const postList = document.getElementById('postList');
+                postList.innerHTML = '';
+
+                posts.forEach(post => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('twittes'); // "twittes" 
+
+                    const userProfile = document.createElement('div');
+                    userProfile.classList.add('inline');
+
+                    const profileImage = document.createElement('img');
+                    profileImage.classList.add('perfilpost');
+                    profileImage.src = "./images/FotoPerfil1.png"
+                    profileImage.alt = 'Imagem de perfil';
+                    profileImage.href = `/perfil-logado`; // Adiciona o link para o perfil do usuário
+
+                    
+
+                    const nameDate = document.createElement('div');
+                    nameDate.classList.add('nome_data');
+
+                    const userNameLink = document.createElement('a');
+                    userNameLink.href = '/perfil-logado'; //  link do perfil do usuário
+
+                    const postDate = document.createElement('p');
+                    postDate.classList.add('data');
+                    postDate.textContent = post.date; // 
+                    
+                    nameDate.appendChild(userNameLink);
+                    nameDate.appendChild(postDate);
+                    userProfile.appendChild(profileImage);
+                    userProfile.appendChild(nameDate);
+
+                    const content = document.createElement('div');
+                    content.classList.add('escrito');
+
+                    const contentParagraph = document.createElement('p');
+                    contentParagraph.classList.add('escrito_');
+                    contentParagraph.style.color = '#FFFFFF';
+                    contentParagraph.textContent = post.content; 
+
+                    const actions = document.createElement('div');
+                    actions.classList.add('comentarioEditar'); 
+
+                    const commentImage = document.createElement('img');
+                    commentImage.classList.add('comentario');
+                    commentImage.src = './images/Comentario.png'; 
+                    commentImage.alt = 'Imagem Comentario';
+                    commentImage.href = 'comentar'; 
+
+                    const editImage = document.createElement('img');
+                    editImage.classList.add('editar');
+                    editImage.src = './images/editar_post.png'; 
+                    editImage.alt = 'Imagem editar';
+                    editImage.href = 'editar'; 
+
+                    const deleteImage = document.createElement('img');
+                    deleteImage.classList.add('Apagar');
+                    deleteImage.src = './images/Lixo.png'; 
+                    deleteImage.alt = 'Imagem do Lixo';
+                    deleteImage.href = 'apagar'; 
+
+                    
+
+                    actions.appendChild(commentImage);
+                    actions.appendChild(editImage);
+                    actions.appendChild(deleteImage);
+
+                    content.appendChild(contentParagraph);
+
+                    listItem.appendChild(userProfile);
+                    listItem.appendChild(content);
+                    listItem.appendChild(actions);
+
+                    postList.appendChild(listItem);
+
+                    
+                });
+            } catch (error) {
+                console.error('Erro ao carregar posts:', error);
+            }
+        }
+    </script>
+</body>
+
 </html>

@@ -332,18 +332,6 @@ a.button {
     color: initial;
 }
 
-.publicacoes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20rem;
-    color: #FFF;
-}
-
-.header {
-    border-bottom: 1px solid #FFF;
-}
-
 /*Modal para criar post*/
 #fade {
     position: fixed;
@@ -404,3 +392,5 @@ a.button {
     background-color: #FFBD59;
     cursor: pointer;
 }
+
+

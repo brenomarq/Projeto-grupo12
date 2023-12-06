@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitter CJR - Perfil Logado</title>
     <link rel="stylesheet" href="./css/perfilLog.css">
-    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/cssModalProfile.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
@@ -69,21 +69,26 @@
                                     style="background: #ffff;border-radius: 16px; padding: 12px; cursor: pointer; color: #000;; border: none; font-size: 16px;"
                                     class="botao-editar-perfil-button">Editar Perfil</button>
                             </a>
-                        <p class="botao-criar-post">
+                        <p class="btn-criarpost">
                             <button
                                 style="background: #ffff;border-radius: 16px; padding: 12px; padding-right: 18px; cursor: pointer; color: #000;; border: none; font-size: 16px;"
                                 class="botao-criar-post-button btn-criarpost">Criar Post</button>
                     </div>
+                    
                 </div>
                 <div id="fade" class="hide"></div>
                 <div id="modal" class="hide">
-                    <div class="modal-header">
+                    <div class="modal-header-2">
                         <h2>Escreva seu post:</h2>
-                        <button class="btn-post btn-profile">Postar</button>
                         <button class="btn-fechar btn-profile">Fechar</button>
                     </div>
-                    <textarea name="content" id="create-post" class="create-post" cols="30" rows="10"></textarea>
+                    <div class="modal-content-2">
+                        <textarea id="markdownEditor" class="create-post" cols="30" rows="10"></textarea>
+                        <div class="botao-postar">
+                    <button id="savePost" style="width: 100px; height: 40px; border: 0; margin-bottom: 5px; border-radius: 7px; transition: 0.4s;">Publicar</button>
                 </div>
+            </div>
+        </div>
 
                 <div class="espaco"> </div>
 
@@ -163,7 +168,7 @@
 
                     const userData = response.data;
 
-                    // Exibindo informações do usuário no perfil
+                    // exibindo informações do usuário no perfil
                     const usernameElement = document.querySelector('.nome-user-info-perfil');
                     const emailElement = document.querySelector('.email-user');
                     const cargoElement = document.querySelector('.cargo-user-logado');

@@ -6,9 +6,10 @@ const cors = require('cors'); // middleware para permitir requisições de outro
 const bodyParser = require('body-parser'); // middleware para fazer o parse do body das requisições
 const userRoutes = require('./resources/js/user/user.routes'); // Importando as rotas dos usuários
 const jwt = require('jsonwebtoken');
-const authenticateToken = require('./resources/js/auth/authMiddleware'); 
+const authenticateToken = require('./resources/js/auth/authMiddleware.js'); 
 const postRoutes = require('./resources/js/posts/post.routes.js');
 const commentRoutes = require('./resources/js/comments/comments.routes.js');
+const { createPost } = require('./resources/js/posts/posts.controller.js');
 
 
 const app = express();
@@ -65,6 +66,12 @@ app.get('/perfil-logado', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'perfilLog.html'));
 });
 
+// perfil teste
+app.get('/perfil-teste', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'perfil.html'));
+});
+
+
 // rotas de usuários ***
 app.use('/users', userRoutes); // Prefixo '/users' para as rotas dos usuários
 
@@ -112,7 +119,8 @@ app.get('/profile', authenticateToken, async (req, res) => {
 });
 
 //Criar post
-app.get('')
+
+app.post('/post/create', authenticateToken, createPost);
 
 
 // start (3000)
