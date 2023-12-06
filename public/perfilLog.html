@@ -7,15 +7,24 @@
     <title>Twitter CJR - Perfil Logado</title>
     <link rel="stylesheet" href="./css/perfilLog.css">
     <link rel="stylesheet" href="./css/cssModalProfile.css">
+    <link rel="stylesheet" href="./css/feedDeslog.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
 
 <body>
     <nav class="header-container">
-        <img class="logo_cjr" src=".\images\Logo_CJR_Estilizado.png" alt="Logo estilizado CJR">
-
+        <img id="logo_cjr-img" class="logo_cjr" src="./images/Logo_CJR_Estilizado.png" alt="Logo estilizado CJR">
         <div style="flex-grow: 1;"></div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var logoImg = document.getElementById('logo_cjr-img');
+                logoImg.addEventListener('click', function() {
+                    window.location.href = '/feed-logado'; 
+                });
+            });
+        </script>
 
         <div class="nome-user-logado-header">
             <a href="#">
@@ -94,64 +103,158 @@
 
                 <section class="Publicacoes">
                     <div class="section">
-                        <p class="divpublicacao" style="color: #FFFFFF;"><strong>Publicações</strong></p>
-                        <hr size="3" width="100%" color="#FFFFFF">
-
-                        <div class="twittes">
-                            <div class="inline">
-                                <img class="perfilpost" src="./images/FotoPerfil1.png" alt="Imagem de perfil">
-                                <div class="nome_data">
-                                    <a href="perfil"><button
-                                            style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin
-                                            Gamer</button> </a>
-                                    <p class="data">22/10/2023</p>
-                                </div>
-                            </div>
-                            <div class="escrito">
-                                <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is
-                                    not simply random text. It has roots in a piece of classical Latin literature from
-                                    45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                                    Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
-                            </div>
-                            <div class="icon-comment-first">
-                                <img src="./images/comment.png" alt="Ícone Comentário">
-
-                            </div>
-                            <div class="espaco"> </div>
-
+                        <div class="inlineLog">
+                            <p class="divpublicacao" style="color: #FFFFFF;"><strong>Publicações</strong></p>
+                            <div style="flex-grow: 1;"></div>
                         </div>
-                        <div class="espaco"> </div>
-
-                        <div class="twittes">
-                            <div class="inline">
-                                <img class="perfilpost" src="./images/FotoPerfil1.png" alt="Imagem de perfil">
-                                <div class="nome_data">
-                                    <a href="perfil"><button
-                                            style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin
-                                            Gamer</button> </a>
-                                    <p class="data">22/10/2023</p>
-                                </div>
-                                <div class="escrito">
-                                    <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum
-                                        is not simply random text. It has roots in a piece of classical Latin literature
-                                        from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor
-                                        at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin
-                                    </p>
-                                </div>
-                                <div class="img_postada">
-                                    <img class="imgpostada" src="./images/ImagemPostada.png" alt="Imagem postada">
-                                </div>
-                                <div class="icon-comment">
-                                    <img src="./images/comment.png" alt="Ícone Comentário">
-                                    <img src="./images/editar_post.png" alt="Ícone Editar">
-
-                                </div>
-                            </div>
-                        </div>
+                        
+        
+                        <hr size="3" width="100%" color="#FFFFFF" style=" margin-bottom: 2rem;">
+        
+                        <ul id="postList"></ul>
                     </div>
-                    <div class="espaco"> </div>
-
                 </section>
+            </main>
+        
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    carregarPosts();
+                });
+            
+                async function carregarPosts() {
+        
+                    const token = localStorage.getItem('token');
+                    const idDoUsuarioLogado = localStorage.getItem('userId');
+        
+                    try {
+                        const usersResponse = await fetch('http://localhost:3000/users/list'); // busca a lista de usuários
+                        const usersData = await usersResponse.json();
+                        
+                        const usersMap = {}; // hash de IDs de usuário para nomes
+                        usersData.forEach(user => {
+                            usersMap[user.id] = user.username; // mapeia IDs para nomes de usuário
+                        });
+            
+                        const response = await fetch('http://localhost:3000/post');
+                        const posts = await response.json();
+            
+                        const postList = document.getElementById('postList');
+                        postList.innerHTML = '';
+            
+                        posts.forEach(post => {
+                            if (post.user_id === parseInt(idDoUsuarioLogado)) {
+                                const listItem = document.createElement('li');
+                                listItem.classList.add('twittes');
+                
+                                const userProfile = document.createElement('div');
+                                userProfile.classList.add('inline');
+                
+                                const profileImage = document.createElement('img');
+                                profileImage.classList.add('perfilpost');
+                                profileImage.src = "./images/FotoPerfil1.png";
+                                profileImage.alt = 'Imagem de perfil';
+                
+                                const nameDate = document.createElement('div');
+                                nameDate.classList.add('nome_data');
+                
+                                const userNameLink = document.createElement('a');
+                                userNameLink.classList.add('nome');
+                                userNameLink.textContent = usersMap[post.user_id]; // nome do usuário usando o mapeamento
+                                userNameLink.href = '/perfil-logado'; // link para o perfil do usuário
+                                userNameLink.style.background = '#6ADAFF';
+                                userNameLink.style.borderRadius = '16px';
+                                userNameLink.style.padding = '12px';
+                                userNameLink.style.cursor = 'pointer';
+                                userNameLink.style.color = '#FFFF';
+                                userNameLink.style.border = 'none';
+                                userNameLink.style.fontSize = '16px';
+                                userNameLink.style.textDecoration = 'none';
+            
+                                const postDate = document.createElement('p');
+                                postDate.classList.add('data');
+                                const dataCreated = new Date(post.created_at);
+                                const dataCreatedFormat = `${dataCreated.getDate().toString().padStart(2, '0')}/${(dataCreated.getMonth() + 1).toString().padStart(2, '0')}/${dataCreated.getFullYear()}`;
+                
+                                postDate.textContent = dataCreatedFormat;
+                
+                                nameDate.appendChild(userNameLink);
+                                nameDate.appendChild(postDate);
+                                userProfile.appendChild(profileImage);
+                                userProfile.appendChild(nameDate);
+            
+                                const content = document.createElement('div');
+                                content.classList.add('escrito');
+            
+                                const contentParagraph = document.createElement('p');
+                                contentParagraph.classList.add('escrito_');
+                                contentParagraph.style.color = '#FFFFFF';
+                                contentParagraph.textContent = post.content; 
+            
+                                const actions = document.createElement('div');
+                                actions.classList.add('comentarioEditar');
+            
+                                // verificacao se o post é do usuario logado
+                                const idDoUsuarioLogado = localStorage.getItem('userId');
+                                if (post.user_id === parseInt(idDoUsuarioLogado)) {
+                                const deleteImage = document.createElement('img');
+                                deleteImage.classList.add('Apagar');
+                                deleteImage.src = './images/Lixo.png'; 
+                                deleteImage.alt = 'Imagem do Lixo';
+                                deleteImage.style.paddingBottom = '0px';
+                                deleteImage.style.width = '30px'; 
+                                deleteImage.style.cursor = 'pointer'; 
+            
+                                deleteImage.addEventListener('click', async () => {
+                                    try {
+                                        const deleteResponse = await fetch(`http://localhost:3000/post/delete/${post.id}`, {
+                                            method: 'DELETE',
+                                            headers: {
+                                                Authorization: `Bearer ${token}`
+                                            }
+                                        });
+            
+                                        if (deleteResponse.ok) {
+                                            listItem.remove();
+                                            window.alert('Post excluído com sucesso!');
+                                        } else {
+                                            console.error('Falha ao excluir o post');
+                                        }
+                                    } catch (error) {
+                                        console.error('Erro ao excluir o post:', error);
+                                    }
+                                });
+            
+                                actions.appendChild(deleteImage);
+                                const commentImage = document.createElement('img');
+                                commentImage.classList.add('comentario');
+                                commentImage.src = './images/Comentario.png'; 
+                                commentImage.alt = 'Imagem Comentario';
+                                commentImage.href = 'comentar'; 
+            
+                                const editImage = document.createElement('img');
+                                editImage.classList.add('editar');
+                                editImage.src = './images/editar_post.png'; 
+                                editImage.alt = 'Imagem editar';
+                                editImage.href = 'editar'; 
+            
+                                actions.appendChild(commentImage);
+                                actions.appendChild(editImage);
+            
+                                content.appendChild(contentParagraph);
+            
+                                listItem.appendChild(userProfile);
+                                listItem.appendChild(content);
+                                listItem.appendChild(actions);
+            
+                                postList.appendChild(listItem);
+                            }}
+                        });
+                        
+                    } catch (error) {
+                        console.error('Erro ao carregar posts:', error);
+                    }
+                }
+            </script>
     </main>
     <script src="./js/scripts.js"></script>
     <script>

@@ -25,6 +25,14 @@
                 <button onclick="window.location.href='/login-page'" class="btn-entrar btn">Entrar</button>
             </div>
         </header>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              var logoImg = document.getElementById('logo-img');
+              logoImg.addEventListener('click', function() {
+                  window.location.href = '/feed-deslogado'; // Redirecionamento ao clicar na imagem
+              });
+          });
+      </script>
         <div class="login-container">
             <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

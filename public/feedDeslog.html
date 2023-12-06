@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitter CJR - Feed Deslogado</title>
     <link rel="stylesheet" href=".\css\feed.css">
+    <link rel="stylesheet" href=".\css\feedDeslog.css">
 
 </head>
 <body>
@@ -16,10 +17,10 @@
         <div style="flex-grow: 1;"></div>
 
         <div class="cadastro">
-            <a herf="cadastro"><button style="background: #6ADAFF;border-radius: 16px; padding: 12px; cursor: pointer; color:#ffff; border: none; font-size: 16px;">Criar Conta</button> </a>
+            <a href="/signup-page"><button style="background: #6ADAFF;border-radius: 16px; padding: 12px; cursor: pointer; color:#ffff; border: none; font-size: 16px;">Criar Conta</button> </a>
         </div>
         <div class="login">
-            <a herf="login"><button style="background: #ffff;border-radius: 16px; padding: 12px; cursor: pointer; color: #000;; border: none; font-size: 16px;">Entrar</button> </a>
+            <a href="/login-page"><button style="background: #ffff;border-radius: 16px; padding: 12px; cursor: pointer; color: #000;; border: none; font-size: 16px;">Entrar</button> </a>
              
         </div>
         
@@ -28,58 +29,103 @@
     <main class="coluna">
         <section class="Publicacoes">
             <div class="section">
-                <p class="divpublicacao" style="color: #FFFFFF;"><strong>Publicações</strong></p>
-                <hr size="3" width="100%" color="#FFFFFF" >
-            
-                <div class="twittes">
-                    <div class="inline">
-                        <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil">
-                        <div class="nome_data">
-                            <a href="perfil"><button style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin Gamer</button> </a>
-                            <p class="data">22/10/2023</p>
-                        </div>
-                    </div>
-                        <div class="escrito">
-                            <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
-                        </div>
-                    
+                <div class="inlineLog">
+                    <p class="divpublicacao" style="color: #FFFFFF;"><strong>Publicações</strong></p>
+                    <div style="flex-grow: 1;"></div>
                 </div>
-                <div class="espaco"> </div>
+                
 
-                <div class="twittes">
-                    <div class="inline">
-                        <img class="perfilpost" src=".\images\FotoPerfil2.png" alt="Imagem de perfil">
-                        <div class="nome_data">
-                            <a href="perfil"><button style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Foca Plays</button> </a>
-                            <p class="data">22/10/2023</p>
-                        </div>
-                    </div>
-                        <div class="escrito">
-                            <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
-                        </div>
-                    
-                </div>
-                <div class="espaco"> </div>
+                <hr size="3" width="100%" color="#FFFFFF" style=" margin-bottom: 2rem;">
 
-                <div class="twittes">
-                    <div class="inline">
-                        <img class="perfilpost" src=".\images\FotoPerfil1.png" alt="Imagem de perfil">
-                        <div class="nome_data">
-                            <a href="perfil"><button style="background:#6ADAFF; border-radius: 16px; padding: 12px; cursor: pointer; color:#FFFF; border: none; font-size: 16px;">Joazin Gamer</button> </a>
-                            <p class="data">22/10/2023</p>
-                        </div>
-                    </div>
-                        <div class="escrito">
-                            <p class="escrito_" style="color: #FFFFFF;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
-                        </div>
-                        <div class="img_postada">
-                            <img class="imgpostada" src=".\images\ImagemPostada.png" alt="Imagem postada">
-                        </div>
-                </div>
+                <ul id="postList"></ul>
             </div>
-                <div class="espaco"> </div>
-            
         </section>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            carregarPosts();
+        });
+    
+        async function carregarPosts() {
+
+            const token = localStorage.getItem('token');
+
+            try {
+                const usersResponse = await fetch('http://localhost:3000/users/list'); // busca a lista de usuários
+                const usersData = await usersResponse.json();
+                
+                const usersMap = {}; // hash de IDs de usuário para nomes
+                usersData.forEach(user => {
+                    usersMap[user.id] = user.username; // mapeia IDs para nomes de usuário
+                });
+    
+                const response = await fetch('http://localhost:3000/post');
+                const posts = await response.json();
+    
+                const postList = document.getElementById('postList');
+                postList.innerHTML = '';
+    
+                posts.forEach(post => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('twittes');
+    
+                    const userProfile = document.createElement('div');
+                    userProfile.classList.add('inline');
+    
+                    const profileImage = document.createElement('img');
+                    profileImage.classList.add('perfilpost');
+                    profileImage.src = "./images/FotoPerfil1.png";
+                    profileImage.alt = 'Imagem de perfil';
+    
+                    const nameDate = document.createElement('div');
+                    nameDate.classList.add('nome_data');
+    
+                    const userNameLink = document.createElement('a');
+                    userNameLink.classList.add('nome');
+                    userNameLink.textContent = usersMap[post.user_id]; // nome do usuário usando o mapeamento
+                    userNameLink.href = '/perfil-logado'; // link para o perfil do usuário
+                    userNameLink.style.background = '#6ADAFF';
+                    userNameLink.style.borderRadius = '16px';
+                    userNameLink.style.padding = '12px';
+                    userNameLink.style.cursor = 'pointer';
+                    userNameLink.style.color = '#FFFF';
+                    userNameLink.style.border = 'none';
+                    userNameLink.style.fontSize = '16px';
+                    userNameLink.style.textDecoration = 'none';
+
+                    const postDate = document.createElement('p');
+                    postDate.classList.add('data');
+                    const dataCreated = new Date(post.created_at);
+                    const dataCreatedFormat = `${dataCreated.getDate().toString().padStart(2, '0')}/${(dataCreated.getMonth() + 1).toString().padStart(2, '0')}/${dataCreated.getFullYear()}`;
+    
+                    postDate.textContent = dataCreatedFormat;
+    
+                    nameDate.appendChild(userNameLink);
+                    nameDate.appendChild(postDate);
+                    userProfile.appendChild(profileImage);
+                    userProfile.appendChild(nameDate);
+
+                    const content = document.createElement('div');
+                    content.classList.add('escrito');
+
+                    const contentParagraph = document.createElement('p');
+                    contentParagraph.classList.add('escrito_');
+                    contentParagraph.style.color = '#FFFFFF';
+                    contentParagraph.textContent = post.content; 
+
+                    content.appendChild(contentParagraph);
+
+                    listItem.appendChild(userProfile);
+                    listItem.appendChild(content)
+
+                    postList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar posts:', error);
+            }
+        }
+    </script>
 </body>
+
 </html>
