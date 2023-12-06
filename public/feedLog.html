@@ -21,7 +21,9 @@
                     }
                 });
 
-                const userData = response.data; 
+                const userData = response.data;
+                const idDoUsuarioLogado = userData.id; // 
+                localStorage.setItem('userId', idDoUsuarioLogado); // save do id do user logado no localStorage 
 
                 // exibição das informações do usuário no header
                 const profileLink = document.querySelector('.perfil a');
@@ -73,40 +75,61 @@
         document.addEventListener('DOMContentLoaded', function () {
             carregarPosts();
         });
-
+    
         async function carregarPosts() {
-            try {
-                const response = await fetch('http://localhost:3000/post'); 
-                const posts = await response.json();
 
+            const token = localStorage.getItem('token');
+
+            try {
+                const usersResponse = await fetch('http://localhost:3000/users/list'); // busca a lista de usuários
+                const usersData = await usersResponse.json();
+                
+                const usersMap = {}; // hash de IDs de usuário para nomes
+                usersData.forEach(user => {
+                    usersMap[user.id] = user.username; // mapeia IDs para nomes de usuário
+                });
+    
+                const response = await fetch('http://localhost:3000/post');
+                const posts = await response.json();
+    
                 const postList = document.getElementById('postList');
                 postList.innerHTML = '';
-
+    
                 posts.forEach(post => {
                     const listItem = document.createElement('li');
-                    listItem.classList.add('twittes'); // "twittes" 
-
+                    listItem.classList.add('twittes');
+    
                     const userProfile = document.createElement('div');
                     userProfile.classList.add('inline');
-
+    
                     const profileImage = document.createElement('img');
                     profileImage.classList.add('perfilpost');
-                    profileImage.src = "./images/FotoPerfil1.png"
+                    profileImage.src = "./images/FotoPerfil1.png";
                     profileImage.alt = 'Imagem de perfil';
-                    profileImage.href = `/perfil-logado`; // Adiciona o link para o perfil do usuário
-
-                    
-
+    
                     const nameDate = document.createElement('div');
                     nameDate.classList.add('nome_data');
-
+    
                     const userNameLink = document.createElement('a');
-                    userNameLink.href = '/perfil-logado'; //  link do perfil do usuário
+                    userNameLink.classList.add('nome');
+                    userNameLink.textContent = usersMap[post.user_id]; // nome do usuário usando o mapeamento
+                    userNameLink.href = '/perfil-logado'; // link para o perfil do usuário
+                    userNameLink.style.background = '#6ADAFF';
+                    userNameLink.style.borderRadius = '16px';
+                    userNameLink.style.padding = '12px';
+                    userNameLink.style.cursor = 'pointer';
+                    userNameLink.style.color = '#FFFF';
+                    userNameLink.style.border = 'none';
+                    userNameLink.style.fontSize = '16px';
+                    userNameLink.style.textDecoration = 'none';
 
                     const postDate = document.createElement('p');
                     postDate.classList.add('data');
-                    postDate.textContent = post.date; // 
-                    
+                    const dataCreated = new Date(post.created_at);
+                    const dataCreatedFormat = `${dataCreated.getDate().toString().padStart(2, '0')}/${(dataCreated.getMonth() + 1).toString().padStart(2, '0')}/${dataCreated.getFullYear()}`;
+    
+                    postDate.textContent = dataCreatedFormat;
+    
                     nameDate.appendChild(userNameLink);
                     nameDate.appendChild(postDate);
                     userProfile.appendChild(profileImage);
@@ -121,7 +144,41 @@
                     contentParagraph.textContent = post.content; 
 
                     const actions = document.createElement('div');
-                    actions.classList.add('comentarioEditar'); 
+                    actions.classList.add('comentarioEditar');
+
+                    // verificacao se o post é do usuario logado
+                    const idDoUsuarioLogado = localStorage.getItem('userId');
+                    if (post.user_id === parseInt(idDoUsuarioLogado)) {
+                    const deleteImage = document.createElement('img');
+                    deleteImage.classList.add('Apagar');
+                    deleteImage.src = './images/Lixo.png'; 
+                    deleteImage.alt = 'Imagem do Lixo';
+                    deleteImage.style.paddingBottom = '0px';
+                    deleteImage.style.width = '30px'; 
+                    deleteImage.style.cursor = 'pointer'; 
+
+                    deleteImage.addEventListener('click', async () => {
+                        try {
+                            const deleteResponse = await fetch(`http://localhost:3000/post/delete/${post.id}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    Authorization: `Bearer ${token}`
+                                }
+                            });
+
+                            if (deleteResponse.ok) {
+                                listItem.remove();
+                                window.alert('Post excluído com sucesso!');
+                            } else {
+                                console.error('Falha ao excluir o post');
+                            }
+                        } catch (error) {
+                            console.error('Erro ao excluir o post:', error);
+                        }
+                    });
+
+                    actions.appendChild(deleteImage);
+                    } 
 
                     const commentImage = document.createElement('img');
                     commentImage.classList.add('comentario');
@@ -135,17 +192,8 @@
                     editImage.alt = 'Imagem editar';
                     editImage.href = 'editar'; 
 
-                    const deleteImage = document.createElement('img');
-                    deleteImage.classList.add('Apagar');
-                    deleteImage.src = './images/Lixo.png'; 
-                    deleteImage.alt = 'Imagem do Lixo';
-                    deleteImage.href = 'apagar'; 
-
-                    
-
                     actions.appendChild(commentImage);
                     actions.appendChild(editImage);
-                    actions.appendChild(deleteImage);
 
                     content.appendChild(contentParagraph);
 
@@ -154,8 +202,6 @@
                     listItem.appendChild(actions);
 
                     postList.appendChild(listItem);
-
-                    
                 });
             } catch (error) {
                 console.error('Erro ao carregar posts:', error);
