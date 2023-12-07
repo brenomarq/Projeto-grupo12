@@ -15,19 +15,36 @@
     <section id="profile">
         <nav class="navbar">
             <div class="logo">
-                <img src="./images/cjr-logo.png" height="70px" alt="CJR logo">
+                <img id="cjr-logo" src="./images/cjr-logo.png" height="70px" alt="CJR logo">
             </div>
-            <div class="nav-buttons">
-                <button class="btn-criar btn">Criar conta</button>
-                <button class="btn-entrar btn">Entrar</button>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var logoImg = document.getElementById('cjr-logo');
+                    logoImg.addEventListener('click', function () {
+                        window.location.href = '/feed-logado';
+                    });
+                });
+            </script>
+
+            <div class="nav-features">
+                <a href="#">
+                    <button class="nome-user-logado-button">Joazin Gamer</button>
+                </a>
+                <a href="#">
+                    <img class="foto-user-logado" src=".\images\FotoPerfil1.png" alt="Foto de perfil">
+                </a>
+                <a href="#" class="logout-user-header-button">
+                    <img src="./images/log-out.png" alt="Botão de Logout" style="cursor: pointer;">
+                </a>
             </div>
         </nav>
         <div class="content">
             <div class="profile-elements">
                 <div class="profile-info">
                     <img src="./images/FotoPerfil1.png" height="100px" alt="Foto de perfil">
-                    <h1>{{username}}</h1>
-                    <p>
+                    <h1 class="nome-user-info-perfil">{{username}}</h1>
+                    <p class="cargo-user-logado">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-building-fill" viewBox="0 0 16 16">
                             <path
@@ -35,7 +52,7 @@
                         </svg>
                         Assessora
                     </p>
-                    <p>
+                    <p class="email-user">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
                             <path
@@ -52,7 +69,15 @@
                 </div>
             </div>
         </div>
-        <div class="publicacoes"></div>
+        <div class="publicacoes">
+            <div class="publicacoes-header">
+                <h2>Publicações</h2>
+            </div>
+            <hr size="3" width="100%" color="#FFFFFF" style=" margin-bottom: 2rem;">
+            <ul id="postList"></ul>
+        </div>
+
+        <!--Modal para fazer o post-->
         <div id="fade" class="hide"></div>
         <div id="modal" class="hide">
             <div class="modal-header">
@@ -62,13 +87,188 @@
             <div class="modal-content">
                 <textarea id="markdownEditor" class="create-post" cols="30" rows="10"></textarea>
                 <div class="botao-postar">
-                    <button id="savePost" style="width: 100px; height: 40px; border: 0; margin-bottom: 5px; border-radius: 7px; transition: 0.4s;">Publicar</button>
+                    <button id="savePost"
+                        style="width: 100px; height: 40px; border: 0; margin-bottom: 5px; border-radius: 7px; transition: 0.4s;">Publicar</button>
                 </div>
             </div>
         </div>
-    </section>
 
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            carregarPosts();
+        });
+
+        async function carregarPosts() {
+
+            const token = localStorage.getItem('token');
+            const idDoUsuarioLogado = localStorage.getItem('userId');
+
+            try {
+                const usersResponse = await fetch('http://localhost:3000/users/list'); // busca a lista de usuários
+                const usersData = await usersResponse.json();
+
+                const usersMap = {}; // hash de IDs de usuário para nomes
+                usersData.forEach(user => {
+                    usersMap[user.id] = user.username; // mapeia IDs para nomes de usuário
+                });
+
+                const response = await fetch('http://localhost:3000/post');
+                const posts = await response.json();
+
+                const postList = document.getElementById('postList');
+                postList.innerHTML = '';
+
+                posts.forEach(post => {
+                    if (post.user_id === parseInt(idDoUsuarioLogado)) {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('twittes');
+
+                        const userProfile = document.createElement('div');
+                        userProfile.classList.add('inline');
+
+                        const profileImage = document.createElement('img');
+                        profileImage.classList.add('perfilpost');
+                        profileImage.src = "./images/FotoPerfil1.png";
+                        profileImage.alt = 'Imagem de perfil';
+
+                        const nameDate = document.createElement('div');
+                        nameDate.classList.add('nome_data');
+
+                        const userNameLink = document.createElement('a');
+                        userNameLink.classList.add('nome');
+                        userNameLink.textContent = usersMap[post.user_id]; // nome do usuário usando o mapeamento
+                        userNameLink.href = '/perfil-logado'; // link para o perfil do usuário
+                        userNameLink.style.background = '#6ADAFF';
+                        userNameLink.style.borderRadius = '16px';
+                        userNameLink.style.padding = '12px';
+                        userNameLink.style.cursor = 'pointer';
+                        userNameLink.style.color = '#FFFF';
+                        userNameLink.style.border = 'none';
+                        userNameLink.style.fontSize = '16px';
+                        userNameLink.style.textDecoration = 'none';
+
+                        const postDate = document.createElement('p');
+                        postDate.classList.add('data');
+                        const dataCreated = new Date(post.created_at);
+                        const dataCreatedFormat = `${dataCreated.getDate().toString().padStart(2, '0')}/${(dataCreated.getMonth() + 1).toString().padStart(2, '0')}/${dataCreated.getFullYear()}`;
+
+                        postDate.textContent = dataCreatedFormat;
+
+                        nameDate.appendChild(userNameLink);
+                        nameDate.appendChild(postDate);
+                        userProfile.appendChild(profileImage);
+                        userProfile.appendChild(nameDate);
+
+                        const content = document.createElement('div');
+                        content.classList.add('escrito');
+
+                        const contentParagraph = document.createElement('p');
+                        contentParagraph.classList.add('escrito_');
+                        contentParagraph.style.color = '#FFFFFF';
+                        contentParagraph.textContent = post.content;
+
+                        const actions = document.createElement('div');
+                        actions.classList.add('comentarioEditar');
+
+                        // verificacao se o post é do usuario logado
+                        const idDoUsuarioLogado = localStorage.getItem('userId');
+                        if (post.user_id === parseInt(idDoUsuarioLogado)) {
+                            const deleteImage = document.createElement('img');
+                            deleteImage.classList.add('Apagar');
+                            deleteImage.src = './images/Lixo.png';
+                            deleteImage.alt = 'Imagem do Lixo';
+                            deleteImage.style.paddingBottom = '0px';
+                            deleteImage.style.height = '30px';
+                            deleteImage.style.cursor = 'pointer';
+
+                            deleteImage.addEventListener('click', async () => {
+                                try {
+                                    const deleteResponse = await fetch(`http://localhost:3000/post/delete/${post.id}`, {
+                                        method: 'DELETE',
+                                        headers: {
+                                            Authorization: `Bearer ${token}`
+                                        }
+                                    });
+
+                                    if (deleteResponse.ok) {
+                                        listItem.remove();
+                                        window.alert('Post excluído com sucesso!');
+                                    } else {
+                                        console.error('Falha ao excluir o post');
+                                    }
+                                } catch (error) {
+                                    console.error('Erro ao excluir o post:', error);
+                                }
+                            });
+
+                            actions.appendChild(deleteImage);
+                            const commentImage = document.createElement('img');
+                            commentImage.classList.add('comentario');
+                            commentImage.src = './images/Comentario.png';
+                            commentImage.alt = 'Imagem Comentario';
+                            commentImage.style.height = "30px"
+                            commentImage.href = 'comentar';
+
+                            const editImage = document.createElement('img');
+                            editImage.classList.add('editar');
+                            editImage.src = './images/editar_post.png';
+                            editImage.alt = 'Imagem editar';
+                            editImage.style.height = "30px";
+                            editImage.href = 'editar';
+
+                            actions.appendChild(commentImage);
+                            actions.appendChild(editImage);
+
+                            content.appendChild(contentParagraph);
+
+                            listItem.appendChild(userProfile);
+                            listItem.appendChild(content);
+                            listItem.appendChild(actions);
+
+                            postList.appendChild(listItem);
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error('Erro ao carregar posts:', error);
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script src="./js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const token = localStorage.getItem('token');
+
+            if (token) {
+                try {
+                    const response = await axios.get('/users/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+
+                    const userData = response.data;
+
+                    // exibindo informações do usuário no perfil
+                    const usernameElement = document.querySelector('.nome-user-info-perfil');
+                    const emailElement = document.querySelector('.email-user');
+                    const cargoElement = document.querySelector('.cargo-user-logado');
+                    const headerButton = document.querySelector('.nome-user-logado-button');
+
+                    usernameElement.textContent = userData.username;
+                    emailElement.textContent = `Email: ${userData.email}`;
+                    cargoElement.textContent = `Cargo: ${userData.cargo}`;
+                    headerButton.textContent = userData.username;
+
+                } catch (error) {
+                    console.error('Erro ao buscar informações do usuário:', error);
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>

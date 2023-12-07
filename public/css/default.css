@@ -26,10 +26,27 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
-.nav-buttons {
+.nav-buttons,
+.nav-features {
     display: flex;
     justify-content: end;
     align-items: center;
+}
+
+.nav-features>* {
+    margin: 0 10px;
+}
+
+.nome-user-logado-button {
+    background-color: #38B6FF;
+    border: 0;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.foto-user-logado {
+    border-radius: 50%;
+    border: 1px solid #FFF;
 }
 
 .btn {
@@ -332,6 +349,87 @@ a.button {
     color: initial;
 }
 
+
+/*Parte de publicações*/
+.publicacoes {
+    padding: 0 30%;
+}
+
+.publicacoes-header {
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-weight: 500;
+}
+
+.twittes {
+    border-radius: 2em;
+    display: grid;
+    width: 630px;
+    background-color: #6ADAFF;
+    margin-bottom: 30px;
+}
+
+.inline {
+    display: inline;
+    margin-left: 1.5em;
+    margin-top: 1em;
+}
+
+.perfilpost {
+    border-radius: 100%;
+    display: inline-block;
+    height: 48px;
+    vertical-align: middle;
+}
+
+.nome_data {
+    display: inline;
+}
+
+.nome {
+    color: #D9D9D9;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    margin: 0%;
+}
+
+.data {
+    color: #FFFFFF;
+}
+
+.escrito {
+    margin-left: 2em;
+    margin-top: -1em;
+    margin-right: 1em;
+    padding-top: 10px;
+}
+
+.escrtito_ {
+    color: #FFFFFF;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+.comentarioEditar {
+    margin: 0 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 50px;
+}
+
+.comentarioEditar>* {
+    margin: 0 5px;
+    height: 30px;
+}
+
+#postList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /*Modal para criar post*/
 #fade {
     position: fixed;
@@ -379,6 +477,11 @@ a.button {
     top: 0;
 }
 
+#savePost:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
 /*Editar perfil*/
 .btn-atualizar {
     margin-top: 20px;
@@ -392,5 +495,3 @@ a.button {
     background-color: #FFBD59;
     cursor: pointer;
 }
-
-
