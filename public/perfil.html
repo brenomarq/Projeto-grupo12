@@ -92,6 +92,22 @@
                 </div>
             </div>
         </div>
+        <!--Modal para editar o post-->
+        <div id="fadeEdit" class="hide"></div>
+        <div id="modalEdit" class="hide">
+            <div class="modal-header-edit">
+                <h2>Editar Post:</h2>
+                <button id= "btn-fechar" class="btn-fechar btn-profile">Fechar</button>
+            </div>
+            <div class="modal-content">
+                <textarea id="markdownEditorEdit" class="edit-post" cols="30" rows="10"></textarea>
+                <div class="botao-atualizar">
+                    <button id="saveEditPost" style="width: 100px; height: 40px; border: 0; margin-bottom: 5px; border-radius: 7px; transition: 0.4s;">Atualizar</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
 
     </section>
     <script>
@@ -222,7 +238,10 @@
                             editImage.src = './images/editar_post.png';
                             editImage.alt = 'Imagem editar';
                             editImage.style.height = "20px";
-                            editImage.href = 'editar';
+                            editImage.style.cursor = 'pointer'; // Adicionando um cursor para indicar que é clicável
+
+                            // Adicionando um listener para o botão de edição de cada post
+                            editImage.addEventListener('click', () => abrirModalEdicao(post.id, post.content));
 
                             actions.appendChild(commentImage);
                             actions.appendChild(editImage);
@@ -237,10 +256,56 @@
                         }
                     }
                 });
+} catch (error) {
+    console.error('Erro ao carregar os posts:', error);
+}
+}
 
-            } catch (error) {
-                console.error('Erro ao carregar posts:', error);
-            }
+        
+                
+        async function abrirModalEdicao(postId, postContent) {
+            const modalEdit = document.querySelector('#modalEdit'); // Adicionei um novo identificador para o modal de edição
+            const fadeEdit = document.querySelector('#fadeEdit'); // Adicionei um novo identificador para o fade do modal de edição
+            const markdownEditor = document.getElementById('markdownEditorEdit'); // Adicionei um novo identificador para o editor de texto do modal de edição
+
+            markdownEditor.value = postContent;
+
+            [modalEdit, fadeEdit].forEach((element) => element.classList.remove('hide'));
+
+            const saveEditPostBtn = document.getElementById('saveEditPost'); // Adicionei um novo identificador para o botão de salvar no modal de edição
+            const fecharModalBtn = document.getElementById('btn-fechar'); 
+
+            saveEditPostBtn.addEventListener('click', async () => {
+                const newContent = markdownEditor.value;
+
+                try {
+                    const token = localStorage.getItem('token');
+                    if (token) {
+                        const updateResponse = await fetch(`http://localhost:3000/post/update/${postId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ postId, newContent })
+                        });
+
+                        if (updateResponse.ok) {
+                            const updatedPostData = await updateResponse.json();
+                            console.log('Post atualizado:', updatedPostData);
+                            [modalEdit, fadeEdit].forEach((element) => element.classList.add('hide'));
+                        } else {
+                            console.error('Falha ao atualizar o post');
+                        }
+                    }
+                } catch (error) {
+                    console.error('Erro ao atualizar o post:', error);
+                }
+            });
+
+            fecharModalBtn.addEventListener('click', () => {
+                [modalEdit, fadeEdit].forEach((element) => element.classList.add('hide'));
+            });
         }
     </script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>

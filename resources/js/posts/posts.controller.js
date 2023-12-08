@@ -48,21 +48,21 @@ async function createPost(req, res) {
     const { postId, newContent } = req.body;
   
     try {
-      console.log('Updating post content for user:', user);
+      console.log('Updating post content for postId:', postId);
   
       const updatedPost = await prisma.post.update({
         where: {
-          user: user,
+          id: postId,
         },
         data: {
           content: newContent,
         },
       });
   
-      console.log('Post content updated:', updatedContent);
-      res.json({ message: 'Post atualizada com sucesso!', updatedPostContent });
+      console.log('Post content updated:', updatedPost);
+      res.json({ message: 'Post atualizado com sucesso!', updatedPost });
     } catch (error) {
-      console.error('Error updating content post:', error);
+      console.error('Error updating post content:', error);
       res.status(500).json({ error: 'Erro ao atualizar o conteúdo do post.' });
     }
   }
