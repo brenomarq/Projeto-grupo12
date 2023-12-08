@@ -33,7 +33,7 @@
                 profileLink.href = '/perfil-logado'; // link para o perfil do usuário
                 
                 const profileImage = document.querySelector('.perfil img');
-                profileImage.src = userData.profilePicture; // Definir a imagem de perfil do usuário
+                profileImage.src = userData.profilePicture; 
 
             } catch (error) {
                 console.error('Erro ao buscar informações do usuário:', error);
@@ -179,10 +179,13 @@
                     const actions = document.createElement('div');
                     actions.classList.add('comentarioEditar');
 
+                    actions.style.display = 'flex';
+                    actions.style.alignItems = 'center';
+
                     // verificacao se o post é do usuario logado
                     const idDoUsuarioLogado = localStorage.getItem('userId');
                     if (post.user_id === parseInt(idDoUsuarioLogado)) {
-                    const deleteImage = document.createElement('img');
+                        const deleteImage = document.createElement('img');
                     deleteImage.classList.add('Apagar');
                     deleteImage.src = './images/Lixo.png'; 
                     deleteImage.alt = 'Imagem do Lixo';
@@ -219,14 +222,8 @@
                     commentImage.alt = 'Imagem Comentario';
                     commentImage.href = 'comentar'; 
 
-                    const editImage = document.createElement('img');
-                    editImage.classList.add('editar');
-                    editImage.src = './images/editar_post.png'; 
-                    editImage.alt = 'Imagem editar';
-                    editImage.href = 'editar'; 
 
                     actions.appendChild(commentImage);
-                    actions.appendChild(editImage);
 
                     content.appendChild(contentParagraph);
 

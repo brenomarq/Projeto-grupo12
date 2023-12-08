@@ -129,7 +129,7 @@ body {
 }
 
 .comentarioEditar  {
-    padding-left: 25rem;
+    padding-left: 26rem;
     padding-bottom: 1rem;
 }
 
@@ -137,6 +137,7 @@ body {
     display: -moz-grid-line;
     padding-left: 7px;
     padding-bottom: 2px;
+    margin-left: 20px;
 }
 
 .comentarioEditar .editar {
@@ -149,7 +150,11 @@ body {
     display: -moz-grid-line;
     padding-left: 7px;
     padding-bottom: 2px;
+    margin-right: 20px;
+    padding-right: 2rem;
+    position: sticky;
 }
+
 
 /*Modal para criar post*/
 #fade {
