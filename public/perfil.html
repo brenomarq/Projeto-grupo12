@@ -264,15 +264,15 @@
         
                 
         async function abrirModalEdicao(postId, postContent) {
-            const modalEdit = document.querySelector('#modalEdit'); // Adicionei um novo identificador para o modal de edição
-            const fadeEdit = document.querySelector('#fadeEdit'); // Adicionei um novo identificador para o fade do modal de edição
-            const markdownEditor = document.getElementById('markdownEditorEdit'); // Adicionei um novo identificador para o editor de texto do modal de edição
+            const modalEdit = document.querySelector('#modalEdit'); 
+            const fadeEdit = document.querySelector('#fadeEdit'); 
+            const markdownEditor = document.getElementById('markdownEditorEdit'); 
 
             markdownEditor.value = postContent;
 
             [modalEdit, fadeEdit].forEach((element) => element.classList.remove('hide'));
 
-            const saveEditPostBtn = document.getElementById('saveEditPost'); // Adicionei um novo identificador para o botão de salvar no modal de edição
+            const saveEditPostBtn = document.getElementById('saveEditPost'); 
             const fecharModalBtn = document.getElementById('btn-fechar'); 
 
             saveEditPostBtn.addEventListener('click', async () => {

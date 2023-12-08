@@ -76,10 +76,14 @@ app.get('/edit-profile', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'editarPerfil.html'));
 });
 
+// perfil deslogado
+app.get('/perfil-deslogado', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'perfilDeslog.html'));
+});
+
 
 // rotas de usuários ***
 app.use('/users', userRoutes); // Prefixo '/users' para as rotas dos usuários
-
 
 // rota para buscar informações do usuário logado
 app.get('/users/me', (req, res) => {
