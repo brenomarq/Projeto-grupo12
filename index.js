@@ -71,6 +71,11 @@ app.get('/perfil-teste', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'perfil.html'));
 });
 
+// edit profile
+app.get('/edit-profile', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'editarPerfil.html'));
+});
+
 
 // rotas de usuários ***
 app.use('/users', userRoutes); // Prefixo '/users' para as rotas dos usuários
