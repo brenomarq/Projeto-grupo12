@@ -34,7 +34,7 @@
                 <a href="#">
                     <img class="foto-user-logado" src=".\images\FotoPerfil1.png" alt="Foto de perfil">
                 </a>
-                <a href="#" class="logout-user-header-button">
+                <a href="/feed-deslogado" class="logout-user-header-button">
                     <img src="./images/log-out.png" alt="Botão de Logout" style="cursor: pointer;">
                 </a>
             </div>
@@ -119,6 +119,11 @@
                 const postList = document.getElementById('postList');
                 postList.innerHTML = '';
 
+                const userPhotosMap = {};
+                usersData.forEach(user => {
+                    userPhotosMap[user.id] = user.profilePicture; 
+                });
+
                 posts.forEach(post => {
                     if (post.user_id === parseInt(idDoUsuarioLogado)) {
                         const listItem = document.createElement('li');
@@ -129,7 +134,9 @@
 
                         const profileImage = document.createElement('img');
                         profileImage.classList.add('perfilpost');
-                        profileImage.src = "./images/FotoPerfil1.png";
+
+                        
+                        profileImage.src = userPhotosMap[post.user_id];; 
                         profileImage.alt = 'Imagem de perfil';
 
                         const nameDate = document.createElement('div');
@@ -257,6 +264,13 @@
                     const emailElement = document.querySelector('.email-user');
                     const cargoElement = document.querySelector('.cargo-user-logado');
                     const headerButton = document.querySelector('.nome-user-logado-button');
+
+                    const profileImage = document.querySelector('.profile-info img');
+                    const fotoPerfilElement = document.querySelector('.foto-user-logado');
+                    fotoPerfilElement.src = userData.profilePicture; 
+
+                    const profilePicBox = document.querySelector('.profile-info img');
+                    profilePicBox.src = userData.profilePicture; 
 
                     usernameElement.textContent = userData.username;
                     emailElement.textContent = `Email: ${userData.email}`;

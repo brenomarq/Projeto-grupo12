@@ -7,6 +7,8 @@
     <title>Twitter CJR - Feed logado</title>
     <link rel="stylesheet" href=".\css\feedDeslog.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <script>
@@ -29,7 +31,10 @@
                 const profileLink = document.querySelector('.perfil a');
                 profileLink.textContent = userData.username; 
                 profileLink.href = '/perfil-logado'; // link para o perfil do usuário
- 
+                
+                const profileImage = document.querySelector('.perfil img');
+                profileImage.src = userData.profilePicture; // Definir a imagem de perfil do usuário
+
             } catch (error) {
                 console.error('Erro ao buscar informações do usuário:', error);
             }
@@ -47,22 +52,43 @@
         </div>
         <div class="espaco"> </div>
         <div class="logout">
-            <img class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" href="feed.html">
+            <img id = "logout" class="Logout" src=".\images\log-out.png" alt="Imagem de Logout" href="feed.html">
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const logoutButton = document.getElementById('logout');
+                logoutButton.addEventListener('click', function () {
+                    window.location.href = '/feed-deslogado';
+                });
+            });
+        </script>
     </nav>
 
 
     <main class="coluna">
+        <div id="fade" class="hide"></div>
+        <div id="modal" class="hide">
+            <div class="modal-header">
+                <h2>Escreva seu post:</h2>
+                <button class="btn-fechar btn-profile">Fechar</button>
+            </div>
+            <div class="modal-content">
+                <textarea id="markdownEditor" class="create-post" cols="30" rows="10"></textarea>
+                <div class="botao-postar">
+                    <button id="savePost" style="margin-top: 9px; width: 100px; height: 40px; border: 0; margin-bottom: 5px; border-radius: 7px; transition: 0.4s;">Publicar</button>
+                </div>
+            </div>
+        </div>
         <section class="Publicacoes">
             <div class="section">
                 <div class="inlineLog">
                     <p class="divpublicacao" style="color: #FFFFFF;"><strong>Publicações</strong></p>
                     <div style="flex-grow: 1;"></div>
-                    <a href="postar">
+                    <a href="#" class="btn-criarpost">
                         <button style="background: #6ADAFF; border-radius: 16px; padding: 0.5em; cursor: pointer; color: #ffff; border: none; font-size: 16px; margin-top: 10px;">Criar Post</button>
                     </a>
                 </div>
-                
+                <script src="./js/scripts.js"></script>
 
                 <hr size="3" width="100%" color="#FFFFFF" style=" margin-bottom: 2rem;">
 
@@ -83,6 +109,11 @@
             try {
                 const usersResponse = await fetch('http://localhost:3000/users/list'); // busca a lista de usuários
                 const usersData = await usersResponse.json();
+
+                const userPhotosMap = {};
+                usersData.forEach(user => {
+                    userPhotosMap[user.id] = user.profilePicture; 
+                });
                 
                 const usersMap = {}; // hash de IDs de usuário para nomes
                 usersData.forEach(user => {
@@ -101,10 +132,12 @@
     
                     const userProfile = document.createElement('div');
                     userProfile.classList.add('inline');
-    
+
                     const profileImage = document.createElement('img');
                     profileImage.classList.add('perfilpost');
-                    profileImage.src = "./images/FotoPerfil1.png";
+
+                    
+                    profileImage.src = userPhotosMap[post.user_id]; 
                     profileImage.alt = 'Imagem de perfil';
     
                     const nameDate = document.createElement('div');

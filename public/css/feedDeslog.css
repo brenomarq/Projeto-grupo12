@@ -107,8 +107,14 @@ body {
 
 }
 
+.logout.logout{ 
+    margin-top: 8px;
+    margin-right: 9px;
+}
+
 .inlineLog {
     display: flex;
+    margin-top: 10px;
 }
 
 .perfil a {
@@ -143,4 +149,129 @@ body {
     display: -moz-grid-line;
     padding-left: 7px;
     padding-bottom: 2px;
+}
+
+/*Modal para criar post*/
+#fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.6);
+}
+
+#fade.hide,
+#modal.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modal {
+    padding: 20px;
+    border-radius: 7px;
+    border: 1px solid #FFF;
+    background-color: #6ADAFF;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#fade,
+#modal {
+    transition: 0.5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Alegreya Sans', sans-serif;
+    color: #000000;
+}
+
+#modal.hide {
+    top: 0;
+}
+
+#savePost:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.CodeMirror.cm-s-paper.CodeMirror-wrap {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
+    height: 300px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+  }
+
+  .editor-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .editor-toolbar a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .editor-toolbar a:hover {
+    background-color: #ddd;
+    border-radius: 3px;
+  }
+  
+  .separator {
+    margin: 0 5px;
+    color: #777;
+  }
+  
+  /* Estilizando o ícone de link para ser azul e sublinhado */
+  .editor-toolbar a.fa.fa-link {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  #modal .editor-statusbar {
+    display: none;
+  }
+
+/*Editar perfil*/
+.btn-atualizar {
+    margin-top: 20px;
+    background-color: #FF914D;
+    border: 1px solid #FF914D;
+    color: #FFF;
+    border: 0;
+}
+
+.btn-atualizar:hover {
+    background-color: #FFBD59;
+    cursor: pointer;
+}
+
+.foto-user-logado {
+    width: 50px; 
+    height: 50px; 
 }

@@ -55,6 +55,11 @@
                 const usersResponse = await fetch('http://localhost:3000/users/list'); // busca a lista de usuários
                 const usersData = await usersResponse.json();
                 
+                const userPhotosMap = {};
+                usersData.forEach(user => {
+                    userPhotosMap[user.id] = user.profilePicture; 
+                });
+
                 const usersMap = {}; // hash de IDs de usuário para nomes
                 usersData.forEach(user => {
                     usersMap[user.id] = user.username; // mapeia IDs para nomes de usuário
@@ -75,7 +80,9 @@
     
                     const profileImage = document.createElement('img');
                     profileImage.classList.add('perfilpost');
-                    profileImage.src = "./images/FotoPerfil1.png";
+
+                    
+                    profileImage.src = userPhotosMap[post.user_id]; 
                     profileImage.alt = 'Imagem de perfil';
     
                     const nameDate = document.createElement('div');

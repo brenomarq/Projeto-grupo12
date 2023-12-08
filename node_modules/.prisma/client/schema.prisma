@@ -17,7 +17,7 @@ model User {
   gender         String
   email          String   @unique
   cargo          String
-  profilePicture String   @default("/img/foto-perfil/default.png")
+  profilePicture String   @default("/images/FotoPerfil1.png")
   createdAt      DateTime @default(now())
 
   posts    Post[]

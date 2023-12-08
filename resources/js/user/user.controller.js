@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 // Criar um usuário
 
 async function createUser(req, res) {
-  const { username, email, password, gender, cargo } = req.body;
+  const { username, email, password, gender, cargo, profilePicture } = req.body;
 
   try {
     console.log('Received user creation request:', req.body);
@@ -27,6 +27,7 @@ async function createUser(req, res) {
         password,  
         gender,
         cargo,
+        profilePicture
       },
     });
 
